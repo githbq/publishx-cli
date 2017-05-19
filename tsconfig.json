@@ -16,12 +16,12 @@
         "lib": ["es2017"],
         "typeRoots": ["node_modules/@types"],
         "types": [
+            "bluebird",
             "cli-color",
             "fs-extra-promise",
             "lodash",
-            "mocha",
             "node",
-            "should"
+            "semver"
         ],
         "outDir": "./build",
         "rootDir": "./src"

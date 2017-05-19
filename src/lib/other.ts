@@ -4,9 +4,9 @@ import * as pathTool from 'path'
 import spawn from 'spawn-helper'
 import * as  prettyMsOrigin from 'pretty-ms'
 import { rootPath, cwd } from './consts'
-import { prompt as promptOrigin } from 'prompt-promise2'
-
-export let _ = lodash
+ 
+/**lodash */
+export const _ = lodash
 /**
  * json美化
  */
@@ -17,7 +17,7 @@ export function stringify(obj, options = {}): string {
  * 读取用户输入
  */
 export async function prompt(describe) {
-    let value = await promptOrigin(describe)
+    let value = await prompt(describe)
     return _.trim(value)
 }
 
@@ -52,7 +52,12 @@ export async function confirm(describe) {
  * 执行shell命令
  */
 export function exec(cmd: string, opt?: any) {
-    return spawn.exec(cmd, opt)
+    return spawn.exec(cmd, {
+        onStdout(msg) {
+        },
+        onStderr(msg) {
+        }, preventDefault: false, ...opt
+    })
 }
 /**
  * 美化时间毫秒输出
