@@ -6,16 +6,18 @@ export default {
     /**
      * 启动
      */
-    async start(data) {　
+    async start(data) {
         //库名
         const name = _.trim(data.name).replace('@types/', '')
-        //移除库
-        const remove = data.remove
-        const cmdStr = remove ? `yarn remove @types/${name}` : `yarn add --dev @types/${name}`
+        //移除库 
+        const cmdStr = data.remove ? `yarn remove @types/${name}` : `yarn add --dev @types/${name}`
+        if (data.remove && data.lib) {
+            const removeLibStr = `yarn remove ${name}`
+            consoleColor.start(removeLibStr)
+            await exec(removeLibStr)
+        }
         consoleColor.start(`${cmdStr}`)
-        consoleColor.time('耗时')
         await exec(cmdStr)
-        consoleColor.timeEnd('耗时')
         const tsConfig = requireCwd('tsconfig.json')
         //从package.json读取当前可用的types填充tsconfig
         tsConfig.compilerOptions.types = this.getExistsTypes()
@@ -37,6 +39,12 @@ export default {
                 alias: ['r'],
                 boolean: true,
                 describe: '移除此库 @types/name 以及tsconig types配置'
+            },
+            lib: {
+                alias: ['l'],
+                boolean: true,
+                default: false,
+                describe: '移除types库时,连同库一起移除'
             }
         }
     ]

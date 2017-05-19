@@ -29,8 +29,9 @@
 - `-r` reset 启动此参数会 强制git reset --hard origin/当前分支 
 - 执行 `px show` 可以看到这些会被更新的项目
 
-### px types "lodash" [-r] 
+### px types "lodash" [-r] [-l]
 -  `-r` remove , yarn add|remove --dev @types/xxx 
+- `-l` lib,移除types库时,连同库一起移除
 
 ### px install  
 - 对查找出来的所有项目执行 yarn 
