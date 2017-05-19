@@ -13,8 +13,8 @@
 - `p` publish,当设置`-p`参数,会执行`npm publish`命令,非必需
 - `f` force ,执行git push 时追加--force 强制推
 - `v` autoVersion,自动增加版本号最后一位patch                      
-    -　现在会执行`npm view [packageName] version `　从远程获取最新版本号,避免版本号跳跃             
-    -　如果库没有被提交过，会走本地的package.json配置的版本号
+    - 现在会执行`npm view [packageName] version `　从远程获取最新版本号,避免版本号跳跃             
+    - 如果库没有被提交过，会走本地的package.json配置的版本号
 -  分支名会自动取当前分支名
 -  检测到 tsconfig.json 文件 会强制执行 npm run tsc 命令
 - **2017-5-19 9:23** 新增逻辑,检测到package.json scripts里有配置`lint`属性
