@@ -1,0 +1,55 @@
+{
+    "name": "xxxx-cli",
+    "version": "1.0.3",
+    "description": "command line project boilerplate",
+    "main": "build/command",
+    "bin": {
+        "xxxx": "./bin.js"
+    },
+    "scripts": {
+        "start:build": "npm run tsc && node build",
+        "start": "node run",
+        "clear": "rimraf build",
+        "tsc": "npm run clear && tsc",
+        "tsc:w": "npm run clear && tsc -w",
+        "p": "npm run tsc && npm publish",
+        "test": "mocha src/**/*.test.ts",
+        "lint": "tslint \"src/**/*.ts\""
+    },
+    "dependencies": {
+        "cli-color": "^1.2.0",
+        "fs-extra-promise": "^1.0.1",
+        "json-stringify-pretty-compact": "^1.0.4",
+        "lodash": "^4.17.4",
+        "ora": "^1.2.0",
+        "pretty-ms": "^2.1.0",
+        "prompt-promise2": "^0.0.2",
+        "require-dir": "^0.3.1",
+        "spawn-helper": "^0.0.5",
+        "tslib": "^1.6.1",
+        "yargs": "^7.1.0"
+    },
+    "devDependencies": {
+        "@types/cli-color": "^0.3.29",
+        "@types/fs-extra-promise": "^1.0.1",
+        "@types/lodash": "^4.14.64",
+        "@types/mocha": "^2.2.41",
+        "@types/node": "^6.0.48",
+        "@types/should": "^8.3.0",
+        "mocha": "^3.3.0",
+        "rimraf": "^2.6.1",
+        "should": "^11.2.1",
+        "ts-node": "^3.0.2",
+        "tslint": "^5.1.0",
+        "typescript": "^2.3.2"
+    },
+    "keywords": [
+        "typescript"
+    ],
+    "author": "hubiqing",
+    "repository": "https://github.com/githbq/hbq-module-cli-boilerplate.git",
+    "engines": {
+        "node": ">=7.6"
+    },
+    "license": "MIT"
+}
