@@ -9,7 +9,7 @@
 > `publishx` 或者 `px`     
 
 ### px start [comment] [-p] [-f] [-v]
-- `px start` 用于简化
+- `px start` 用于简化:
     - npm run lint //代码风格校验 *失败终止后续操作*
     - npm run tsc //typescript编译  *失败终止后续操作*
     - git add && commit  //本地提交
