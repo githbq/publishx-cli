@@ -9,7 +9,13 @@
 > `publishx` 或者 `px`     
 
 ### px start [comment] [-p] [-f] [-v]
-- `px start` 用于简化 git add && commit && push && auto upgrade version  && git push 
+- `px start` 用于简化
+    - npm run lint //代码风格校验 *失败终止后续操作*
+    - npm run tsc //typescript编译  *失败终止后续操作*
+    - git add && commit  //本地提交
+    - git push [--force] //远程提交
+    - auto upgrade version //版本自动化升级
+    - git push  //发面到npmjs 
 - `p` publish,当设置`-p`参数,会执行`npm publish`命令,非必需
 - `f` force ,执行git push 时追加--force 强制推
 - `v` autoVersion,自动增加版本号最后一位patch
