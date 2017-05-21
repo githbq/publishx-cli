@@ -24,6 +24,7 @@ export default {
                 key: 'autoVersion', value: async () => {
                     //以cwd目录执行版本++
                     newVersion = await this.upgradeVersion()
+                    console.log(`newVersion`, newVersion)
                 }
             })
         }
