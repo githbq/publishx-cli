@@ -78,6 +78,7 @@ export default {
                 }
             }
         }
+        consoleColor.green('操作完毕!!!', true, true)
     },
     /**
      * 升级版本
