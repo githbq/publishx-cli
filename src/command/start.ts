@@ -40,13 +40,15 @@ export default {
         }
         if (data.publish) {
             cmdArr.push({ key: 'publish', value: 'npm publish' })
-            cmdArr.push({
-                key: 'tagAdd', value: async () => {
-                    let tagCmdStr = `git tag -a v${newVersion} -m "v${newVersion}" && git push origin --tags`
-                    consoleColor.start(tagCmdStr)
-                    await exec(tagCmdStr)
-                }
-            })
+            if (data.tag) {
+                cmdArr.push({
+                    key: 'tagAdd', value: async () => {
+                        let tagCmdStr = `git tag -a v${newVersion} -m "v${newVersion}" && git push origin --tags`
+                        consoleColor.start(tagCmdStr)
+                        await exec(tagCmdStr)
+                    }
+                })
+            }
         }
         for (let cmd of cmdArr) {
             try {
@@ -115,6 +117,11 @@ export default {
             alias: ['f'],
             boolean: true,
             describe: '强制git push'
+        },
+        tag: {
+            boolean: true,
+            default: false,
+            describe: 'npm publish时自动添加tag'
         }
     }]
 }
