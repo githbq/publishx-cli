@@ -41,8 +41,11 @@ export default {
         }
         if (data.publish) {
             cmdArr.push({ key: 'publish', value: 'npm publish' })
-            cmdArr.push({ key: 'tagAdd', value: `git tag -a v${newVersion} -m "v${newVersion}"` })
-            cmdArr.push({ key: 'tagPush', value: 'npm push origin --tags' })
+            cmdArr.push({
+                key: 'tagAdd', value: async () => {
+                    await exec(`git tag -a v${newVersion} -m "v${newVersion}" && git push origin --tags `)
+                }
+            })
         }
         for (let cmd of cmdArr) {
             try {
