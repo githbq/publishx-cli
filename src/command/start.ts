@@ -17,12 +17,13 @@ export default {
             //ts检测 
             cmdArr.push({ key: 'tsc', value: 'npm run tsc' })
         }
+        let newVersion
         if (data.autoVersion) {
             //自动生成版本号
             cmdArr.push({
                 key: 'autoVersion', value: async () => {
                     //以cwd目录执行版本++
-                    await this.upgradeVersion()
+                    newVersion = await this.upgradeVersion()
                 }
             })
         }
@@ -39,6 +40,8 @@ export default {
         }
         if (data.publish) {
             cmdArr.push({ key: 'publish', value: 'npm publish' })
+            cmdArr.push({ key: 'tagAdd', value: `git tag -a v${newVersion} -m "v${newVersion}"` })
+            cmdArr.push({ key: 'tagPush', value: 'npm push origin --tags' })
         }
         for (let cmd of cmdArr) {
             try {
@@ -89,7 +92,8 @@ export default {
         newVersion = newVersion || semver.inc(packageHelper.getVersion(currentVersion), 'patch')
         consoleColor.green(`升级到新版本:${newVersion}`)
         packageJson.version = newVersion
-        return packageHelper.write(packageJson)
+        await packageHelper.write(packageJson)
+        return newVersion
     }, command: ['start <comment>', '提交 [comment]', {
         autoVersion: {
             alias: ['v'],

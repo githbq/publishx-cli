@@ -17,6 +17,7 @@
     - auto upgrade version //版本自动化升级
     - npm publish  //发布到npmjs 
 - `p` publish,当设置`-p`参数,会执行`npm publish`命令,非必需
+    - 同时`git tag -a v${newVersion} -m v${newVersion} && git push --tags`
 - `f` force ,执行git push 时追加--force 强制推
 - `v` autoVersion,自动增加版本号最后一位patch
     * 现在会执行`npm view [packageName] version`从远程获取版本号,避免版本号跳跃
