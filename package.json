@@ -1,6 +1,6 @@
 {
     "name": "publishx-cli",
-    "version": "1.2.7",
+    "version": "1.2.8",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "main": "./build/command",
     "bin": {

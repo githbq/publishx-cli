@@ -24,7 +24,6 @@ export default {
                 key: 'autoVersion', value: async () => {
                     //以cwd目录执行版本++
                     newVersion = await this.upgradeVersion()
-                    console.log(`newVersion`, newVersion)
                 }
             })
         }
@@ -43,7 +42,9 @@ export default {
             cmdArr.push({ key: 'publish', value: 'npm publish' })
             cmdArr.push({
                 key: 'tagAdd', value: async () => {
-                    await exec(`git tag -a v${newVersion} -m "v${newVersion}" && git push origin --tags `)
+                    let tagCmdStr = `git tag -a v${newVersion} -m "v${newVersion}" && git push origin --tags`
+                    consoleColor.start(tagCmdStr)
+                    await exec(tagCmdStr)
                 }
             })
         }
