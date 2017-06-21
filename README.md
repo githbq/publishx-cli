@@ -1,4 +1,4 @@
-![example](./publishx-cli.png)
+![example](./logo.png)
 
 > 多功能命令 `px` ,简化git操作，一些常用的批量操作
 
