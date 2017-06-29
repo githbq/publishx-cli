@@ -32,7 +32,7 @@ export const consoleColor = {
         this.red(e.message)
     },
     start(msg) {
-        this.green(`$> 开始:${color.blueBright.bgWhite(msg)}`)
+        this.green(`$> 开始:${color.yellow.bgMagenta(msg)}`)    
     },
     any(fn) {
         // color.blue.bgWhite(`✅`)
