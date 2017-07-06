@@ -80,7 +80,7 @@ export default {
     },
     command: [
         'copy <target>',
-        '复制项目，忽略node_modules',
+        '复制项目，忽略node_modules', 
         {
             concurrent: {
                 alias: 'c',
