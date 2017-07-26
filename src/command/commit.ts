@@ -11,7 +11,12 @@ export default {
         const cmdStr = `git add . && git commit -am "${data.comment}"`
         consoleColor.start(cmdStr)
         consoleColor.time('耗时')
-        await exec(cmdStr)
+        try {
+            await exec(cmdStr)
+        }
+        catch (e) {
+            consoleColor.red(`发生异常:${e.message}`, false)
+        }
         consoleColor.timeEnd('耗时')
     }, command: ['commit <comment>', 'git add . && git commit -am [comment]', {
     }]
