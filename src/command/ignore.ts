@@ -9,9 +9,9 @@ export default {
     async start(data) {
         await this.copyIgnore(data.npm)
     },
-    async copyIgnore(gengerNpmIgnore) {
+    async copyIgnore(generateNpmIgnore) {
         const fileNames = ['.gitignore']
-        if (gengerNpmIgnore) {
+        if (generateNpmIgnore) {
             fileNames.push('.npmignore')
         }
         for (let fileName of fileNames) {
