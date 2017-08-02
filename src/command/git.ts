@@ -26,7 +26,7 @@ export default {
             },
             {
                 desc: `git 自动记住账号密码`,
-                cmdStr: `git config –-global credential.helper store`
+                cmdStr: `git config --global credential.helper store`
             },
 
             {
@@ -35,7 +35,7 @@ export default {
             },
             {
                 desc: `windows中的换行符为 CRLF， 而在linux下的换行符为LF，所以在执行add . 时出现提示，解决办法,禁用自动转换`,
-                cmdStr: `git config --global core.autocrlf false`
+                cmdStr: `git config --global core.autocrlf false`
             }
         ]
         for (let data of cmdData) {
