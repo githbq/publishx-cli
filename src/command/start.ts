@@ -9,15 +9,16 @@ export default {
      */
     async start(data) {
         let cmdArr = []
+        const packageJSON = await packageHelper.get()
         const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
-        if ((await packageHelper.get()).scripts['lint']) {
+        if (packageJSON.scripts['lint']) {
             cmdArr.push({ key: 'lint', value: 'npm run lint' })
         }
         if (isTs) {
             //ts检测 
             cmdArr.push({ key: 'tsc', value: 'npm run tsc' })
         }
-        let newVersion
+        let newVersion = packageJSON.version || 'v1.0.0'
         if (data.autoVersion) {
             //自动生成版本号
             cmdArr.push({
