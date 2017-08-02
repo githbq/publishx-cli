@@ -44,8 +44,11 @@ export default {
             try {
                 //执行任务
                 await exec(data.cmdStr)
+                consoleColor.green('执行完毕', true)
             } catch (e) {
+                console.log('1111111')
                 consoleColor.error(e)
+                console.log('22222')
             }
         }
         consoleColor.green(`操作结束！`)
