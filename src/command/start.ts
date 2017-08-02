@@ -10,7 +10,7 @@ export default {
     async start(data) {
         let cmdArr = []
         const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
-        if (packageHelper.get().scripts['lint']) {
+        if ((await packageHelper.get()).scripts['lint']) {
             cmdArr.push({ key: 'lint', value: 'npm run lint' })
         }
         if (isTs) {
@@ -86,7 +86,7 @@ export default {
      * 升级版本
      */
     async  upgradeVersion() {
-        const packageJson = packageHelper.get()
+        const packageJson = await packageHelper.get()
         let currentVersion = packageJson.version
         let newVersion
         try {

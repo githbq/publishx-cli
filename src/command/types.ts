@@ -20,12 +20,12 @@ export default {
         await exec(cmdStr)
         const tsConfig = requireCwd('tsconfig.json')
         //从package.json读取当前可用的types填充tsconfig
-        tsConfig.compilerOptions.types = this.getExistsTypes()
+        tsConfig.compilerOptions.types = await this.getExistsTypes()
         await io.write('tsconfig.json', tsConfig, { fromCwd: true })
         consoleColor.green(`操作结束`, true)
     },
-    getExistsTypes() {
-        const packageJson = packageHelper.get()
+    async getExistsTypes() {
+        const packageJson = await packageHelper.get()
         const allDeps = { ...packageJson.dependencies, ...packageJson.devDependencies }
         let types = Object.keys(allDeps).filter((n) => /^@types/.test(n)).map(n => n.replace('@types/', ''))
         types = _.sortBy(types, n => n)
