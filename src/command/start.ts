@@ -18,7 +18,7 @@ export default {
             //ts检测 
             cmdArr.push({ key: 'tsc', value: 'npm run tsc' })
         }
-        let newVersion = packageJSON.version || 'v1.0.0'
+        let newVersion = packageJSON.version || '1.0.0'
         if (data.autoVersion) {
             //自动生成版本号
             cmdArr.push({
