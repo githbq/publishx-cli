@@ -8,7 +8,11 @@ export const packageHelper = {
         return pathTool.join(this.cwd || cwd, 'package.json')
     },
     get() {
-        return require(this.getPath())
+        if (io.exists(this.getPath())) {
+            return require(this.getPath())
+        } else {
+            return { scripts: {} }
+        }
     },
     write(jsonObj: object) {
         return io.write(this.getPath(), jsonObj)
