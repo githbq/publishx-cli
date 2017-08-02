@@ -1,6 +1,6 @@
 {
     "name": "publishx-cli",
-    "version": "1.2.20",
+    "version": "1.2.21",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "main": "./build/command",
     "bin": {
@@ -50,7 +50,10 @@
         "easy git",
         "npmjs",
         "auto version",
-        "auto tool"
+        "auto tool",
+        "git config",
+        "git helper",
+        "cli"
     ],
     "engines": {"node": ">=7.6"},
     "author": "hubiqing",
