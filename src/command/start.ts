@@ -119,6 +119,7 @@ export default {
             describe: '强制git push'
         },
         tag: {
+            alias: ['t'],
             boolean: true,
             default: false,
             describe: 'npm publish时自动添加tag'
