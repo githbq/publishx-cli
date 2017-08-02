@@ -4,7 +4,7 @@ import * as pathTool from 'path'
 import spawn from 'spawn-helper'
 import * as  prettyMsOrigin from 'pretty-ms'
 import { rootPath, cwd } from './consts'
- 
+
 /**lodash */
 export const _ = lodash
 /**
@@ -53,6 +53,7 @@ export async function confirm(describe) {
  */
 export function exec(cmd: string, opt?: any) {
     return spawn.exec(cmd, {
+        cwd,
         onStdout(msg) {
         },
         onStderr(msg) {
