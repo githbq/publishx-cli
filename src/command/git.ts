@@ -26,7 +26,7 @@ export default {
             },
             {
                 desc: `git 自动记住账号密码`,
-                cmdStr: `git config –global credential.helper store`
+                cmdStr: `git config –-global credential.helper store`
             },
 
             {
