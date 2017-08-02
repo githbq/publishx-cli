@@ -70,6 +70,9 @@
 ### px npm [-t] [-n]
 - 显示当前npm registry , -t　taobao -n npmjs,npm registry指向taobao 或者 npmjs 
 
+### px git init
+- 初始化 git 常用参数 
+
 ## 查看帮助
 
 - 在对应的命令后面增加　`--help`
