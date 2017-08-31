@@ -32,9 +32,7 @@ upload/
 
 ###############
 .vscode 
-test
-.npmignore
-.gitignore
+test 
 run.js
 tsconfig.json
 tslint.json
