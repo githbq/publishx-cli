@@ -33,10 +33,10 @@ export default {
                 desc: `git push origin 仅推送当前分支 如果  最后一位是 matching 而不是simple 则会推送所有本地分支`,
                 cmdStr: `git config --global push.default simple`
             },
-            // {
-            //     desc: `windows中的换行符为 CRLF， 而在linux下的换行符为LF，所以在执行add . 时出现提示，解决办法,禁用自动转换`,
-            //     cmdStr: `git config --global core.autocrlf false`
-            // }
+            {
+                desc: `windows中的换行符为 CRLF， 而在linux下的换行符为LF，所以在执行add . 时出现提示，解决办法,禁用自动转换`,
+                cmdStr: `git config --global core.autocrlf false`
+            }
         ]
         for (let data of cmdData) {
             consoleColor.green(data.desc)
