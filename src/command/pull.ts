@@ -14,7 +14,10 @@ export default {
         const cmdStr = `git pull ${data.origin} ${data.branch}`
         consoleColor.start(cmdStr)
         consoleColor.time('耗时')
-        await exec(cmdStr)
+        try {
+            await exec(cmdStr)
+        } catch (e) {
+        }
         consoleColor.timeEnd('耗时')
     }, command: ['pull', 'git pull [origin] <current branch>', {
         branch: {
