@@ -15,7 +15,7 @@ export default {
             await exec(cmdStr)
         }
         catch (e) {
-            consoleColor.red(`发生异常:${e.message}`, false)
+            // consoleColor.red(`发生异常:${e.message}`, false)
         }
         consoleColor.timeEnd('耗时')
     }, command: ['commit <comment>', 'git add . && git commit -am [comment]', {
