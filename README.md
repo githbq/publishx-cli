@@ -73,10 +73,12 @@
 ### px git init
 - 初始化 git 常用参数 
 
+### px merge [branch]
+- git merge ${branch} --no-ff --no-commit
+- merge 前会自动执行 px commit `beforeMerge`,降低失误率
+
 ## 查看帮助
 
 - 在对应的命令后面增加　`--help`
     * px --help 
     * px start --help 
- 
- 
