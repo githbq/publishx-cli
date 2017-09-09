@@ -16,8 +16,8 @@ export default {
     }
     for (let fileName of fileNames) {
       const content = await io.read(fileName, { fromRoot: true })
-      consoleColor.green(`正在当前目录生成 ${fileName} 文件`)
       const newFilename = fileName.replace(/.*template/, '')
+      consoleColor.green(`正在当前目录生成 ${newFilename} 文件`)
       await io.write(newFilename, content, { fromCwd: true })
       consoleColor.green(`生成成功 ${newFilename}`, true)
     }
