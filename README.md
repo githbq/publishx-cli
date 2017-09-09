@@ -88,6 +88,8 @@
   2. `code .` //失败后静默
   3. `yarn` //失败后静默
 
+### px stylelint
+- 生成 `.stylelintrc.json` 文件
 ## 查看帮助
 
 - 在对应的命令后面增加　`--help`
