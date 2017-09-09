@@ -18,7 +18,7 @@ export default {
     let count = 0
     for (let pathModel of pathModels) {
       tasks.push({
-        title: `[${++count}]执行 git fetch origin${data.reset ? ' && git reset --hard origin/[currentBranch]' : ''} @ ${pathModel.path}`,
+        title: `[${++count}]执行 git fetch origin${data.reset ? ' && git clean -df && git reset --hard origin/[currentBranch]' : ''} @ ${pathModel.path}`,
         task: () => {
           pathModel.path = io.pathTool.resolve(pathModel.path)
           return new Observable((observer) => {
