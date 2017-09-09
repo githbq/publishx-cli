@@ -11,7 +11,6 @@ node_modules
 ##项目临时文件存放目录
 temp/
 dist/
-build/
 typings/
 
 #mac系统临时文件
@@ -30,3 +29,15 @@ typings/
 
 #用户上传文件
 upload/
+
+###############
+.vscode
+test
+run.js
+tsconfig.json
+tslint.json
+yarn.lock
+src
+*.map
+*.png
+.editorconfig
