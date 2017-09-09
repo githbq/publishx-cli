@@ -74,7 +74,7 @@ export interface Task {
 }
 
 export async function runTasks(tasks: Array<Task>, params: any) {
-  if (!runTasks) {
+  if (!tasks) {
     return
   }
   consoleColor.time('总耗时')
