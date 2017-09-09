@@ -9,7 +9,7 @@ export default {
    */
   async start({ branch }) {
     if (!branch) {
-      consoleColor.red('缺少 分支名 , 提示: px merget dev')
+      consoleColor.red('缺少 分支名 , 提示: px merge dev')
     }
     const currentBranchName = await getCurrentBranchName()//当前项目分支名
     consoleColor.yellow('提示:默认开启 --no-ff --no-commit merge时不自动commit  非快照式合并!')
