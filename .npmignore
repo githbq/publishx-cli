@@ -1,28 +1,28 @@
- 
+
 #运行时临时文件
 ##日志文件
-*.log*  
+*.log*
 ##进程id文件
 *.pid
 
 #临时文件
 ##npm库安装目录
 node_modules
-##项目临时文件存放目录  
+##项目临时文件存放目录
 temp/
-dist/ 
+dist/
 typings/
 
 #mac系统临时文件
 .DS_Store
 
-#编辑器配置文件 
+#编辑器配置文件
 ##webstorm 临时文件
 .idea
 
-# Intellij 
+# Intellij
 *.iml
-*.iws 
+*.iws
 
 #戳类文件
 *token*.*
@@ -31,8 +31,8 @@ typings/
 upload/
 
 ###############
-.vscode 
-test 
+.vscode
+test
 run.js
 tsconfig.json
 tslint.json
@@ -40,3 +40,4 @@ yarn.lock
 src
 *.map
 *.png
+.editorconfig
