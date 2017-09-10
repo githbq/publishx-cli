@@ -79,7 +79,6 @@
 
 ### px clone [url] -b? [branch] -n? [projectName]
 - 更便捷的 `git clone`
-- 默认参数 `--depth=1` 浅克隆 更快的clone项目
 - 默认参数 `--recursive` 自动clone git submodules
 - 自动打开 `vscode` 开发工具
 - 自动对生成的项目执行 `yarn` 进行装库操作

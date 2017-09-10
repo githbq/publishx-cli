@@ -17,9 +17,9 @@ export default {
     {
       name: 'clone',
       action: async ({ branch, name, url }) => {
-        consoleColor.green('提示: 默认参数 --depth=1 浅clone 保证clone效率的最大化')
         consoleColor.green('提示: 默认参数 --recursive 自动clone对应的子模块 git submodule')
-        const cmdStr = `git clone ${url} --depth=1 -b ${branch} ${name} --recursive`
+        // --depth=1 会导致无法切换分支  暂时不加
+        const cmdStr = `git clone ${url} -b ${branch} ${name} --recursive`
         consoleColor.start(cmdStr)
         try {
           await exec(cmdStr)
@@ -55,7 +55,7 @@ export default {
     }
   ]
   ,
-  command: ['clone <url>', '智能clone git项目，自动装库 自动打开vscode,git clone --depth=1 --branch? [branch] [name]? ',
+  command: ['clone <url>', '智能clone git项目，自动装库 自动打开vscode,git clone --branch? [branch] [name]? ',
     {
       branch: {
         alias: 'b',
