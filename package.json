@@ -55,7 +55,9 @@
         "git helper",
         "cli"
     ],
-    "engines": {"node": ">=7.6"},
+    "engines": {
+        "node": ">=7.6"
+    },
     "author": "hubiqing",
     "repository": "https://github.com/githbq/publishx-cli.git",
     "license": "MIT"
