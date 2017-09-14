@@ -13,7 +13,7 @@
         "tsc": "npm run clear && tsc",
         "tsc:w": "npm run clear && tsc -w",
         "p": "npm run tsc && npm publish",
-        "lint": "tslint \"src/**/*.ts\""
+        "lint": "tslint ./src/**/*.ts"
     },
     "dependencies": {
         "cli-color": "^1.2.0",
