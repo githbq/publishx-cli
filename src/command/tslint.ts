@@ -17,7 +17,7 @@ export default {
             await io.write(fileName, content, { fromCwd: true })
         }
         consoleColor.green(`生成成功 ${fileNames.join(',')}`, true)
-        consoleColor.green(`请在 package.json scripts 增加 {"lint": "tslint \\\"src/**/*.ts\\\""} `)
+        consoleColor.green(`请在 package.json scripts 增加 {"lint": "tslint ./src/**/*.ts "} `)
     },
     command: [
         'tslint',
