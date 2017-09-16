@@ -30,3 +30,4 @@ typings/
 
 #用户上传文件
 upload/
+package-lock.json

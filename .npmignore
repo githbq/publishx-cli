@@ -40,5 +40,5 @@ yarn.lock
 src
 *.map
 *.png
-
+package-lock.json
 
