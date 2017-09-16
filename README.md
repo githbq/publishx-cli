@@ -79,11 +79,11 @@
 
 ### px clone [url] -b? [branch] -n? [projectName]
 - 更便捷的 `git clone`
-- 默认参数 `--recursive` 自动clone git submodules
+- 默认参数 `--recursive` 自动 `git clone git submodules`
 - 自动打开 `vscode` 开发工具
 - 自动对生成的项目执行 `yarn` 进行装库操作
 - 执行步骤
-  1. `git clone` //失败后终止后续行为
+  1. `git clone` //失败后 终止后续行为
   2. `code .` //失败后静默
   3. `yarn` //失败后静默
 
