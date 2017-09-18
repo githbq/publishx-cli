@@ -41,4 +41,4 @@ src
 *.map
 *.png
 package-lock.json
-
+.awcache

@@ -42,3 +42,4 @@ src
 *.png
 .editorconfig
 package-lock.json
+.awcache
