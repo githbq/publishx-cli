@@ -560,6 +560,16 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
+moment-helper@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/moment-helper/-/moment-helper-0.0.1.tgz#883a715aeb4b0ef23e4c7c2c8c86f30fd1d5c99e"
+  dependencies:
+    moment "^2.18.1"
+
+moment@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.npmjs.org/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
