@@ -87,6 +87,9 @@
   2. `code .` //失败后静默
   3. `yarn` //失败后静默
 
+### px checkout -b? <branchName>
+-  先执行 `git remote update` 然后 `git checkout <branchName>`
+- `-b` 是否新建并切换到 对应的分支名 `git checkout -b <branchName>`
 ### px stylelint
 - 生成 `.stylelintrc.json` 文件
 ## 查看帮助
