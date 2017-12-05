@@ -21,28 +21,22 @@ export default {
         title: `[${++count}]执行 git fetch origin${data.reset ? ' && git clean -df && git reset --hard origin/[currentBranch]' : ''} @ ${pathModel.path}`,
         task: () => {
           pathModel.path = io.pathTool.resolve(pathModel.path)
-          return new Observable((observer) => {
-            let currentBranch
-            getCurrentBranchName({ cwd: pathModel.path })
-              .then((branch) => {
-                currentBranch = branch
-                const cmdStr = ' git fetch origin '
-                observer.next(cmdStr)
+
+          let currentBranch
+          return getCurrentBranchName({ cwd: pathModel.path })
+            .then((branch) => {
+              currentBranch = branch
+              const cmdStr = ' git fetch origin '
+              return exec(cmdStr, { cwd: pathModel.path, preventDefault: true })
+            })
+            .catch(() => { })
+            .then(() => {
+              if (data.reset) {
+                const cmdStr = `git clean -df && git reset --hard origin/${currentBranch}`
                 return exec(cmdStr, { cwd: pathModel.path, preventDefault: true })
-              })
-              .catch(() => { })
-              .then(() => {
-                if (data.reset) {
-                  const cmdStr = `git clean -df && git reset --hard origin/${currentBranch}`
-                  observer.next(cmdStr)
-                  return exec(cmdStr, { cwd: pathModel.path, preventDefault: true })
-                }
-              })
-              .catch(() => { })
-              .then(() => {
-                observer.complete()
-              })
-          })
+              }
+            })
+            .catch(() => { })
         }
       })
     }

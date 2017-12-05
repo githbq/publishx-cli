@@ -772,9 +772,15 @@ restore-cursor@^2.0.0:
     onetime "^2.0.0"
     signal-exit "^3.0.2"
 
-rxjs@^5.0.0-beta.11, rxjs@^5.4.0:
+rxjs@^5.0.0-beta.11:
   version "5.4.0"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-5.4.0.tgz#a7db14ab157f9d7aac6a56e655e7a3860d39bf26"
+  dependencies:
+    symbol-observable "^1.0.1"
+
+rxjs@^5.4.0:
+  version "5.5.3"
+  resolved "http://npm.zhaopin.com/rxjs/-/rxjs-5.5.3.tgz#b62227e74b84f4e77bdf440e50b5ee01a1bc7dcd"
   dependencies:
     symbol-observable "^1.0.1"
 
