@@ -21,8 +21,8 @@ export const io = {
     //对对象进行 美化格式处理
     content = _.isObject(content) ? stringify(content) : content
     return fs.outputFileAsync(path, content)
-  }
-  , delete(path) {
+  },
+  delete(path) {
     path = pathTool.join.apply(null, [].concat(path))
     return fs.removeAsync(path)
   },
