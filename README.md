@@ -101,8 +101,10 @@
 1. 将npm升级到最新版: npm i -g npm
 2. 安装全局跨平台删除命令rimraf: npm i -g rimraf
 3. 安装全局命令 yarn: npm i -g yarn
-4. 将 yarn registry切换到淘宝npm:     px yarn -t
-6. 初始化 git 默认行为:px git init
+4. 安装 iclone-cli 脚手架工具: npm i -g iclone-cli
+5. 将 yarn registry切换到淘宝npm:     px yarn -t
+6. 安装全局命令 cnpm: npm i -g cnpm
+7. 初始化 git 默认行为:px git init
 
 ## 查看帮助
 
