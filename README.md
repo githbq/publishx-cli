@@ -96,6 +96,14 @@
 ### px sync
 - 对当前项目进行 `git clean -df && git checkout . && git pull origin [currentBranch]`
 
+### px init
+- 执行开发环境初始化准备工作
+1. 将npm升级到最新版: npm i -g npm
+2. 安装全局跨平台删除命令rimraf: npm i -g rimraf
+3. 安装全局命令 yarn: npm i -g yarn
+4. 将 yarn registry切换到淘宝npm:     px yarn -t
+6. 初始化 git 默认行为:px git init
+
 ## 查看帮助
 
 - 在对应的命令后面增加　`--help`
