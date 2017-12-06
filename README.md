@@ -92,6 +92,10 @@
 - `-b` 是否新建并切换到 对应的分支名 `git checkout -b <branchName>`
 ### px stylelint
 - 生成 `.stylelintrc.json` 文件
+
+### px sync
+- 对当前项目进行 `git clean -df && git checkout . && git pull origin [currentBranch]`
+
 ## 查看帮助
 
 - 在对应的命令后面增加　`--help`
