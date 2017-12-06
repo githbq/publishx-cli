@@ -20,7 +20,7 @@ export default {
     }
     consoleColor.timeEnd('耗时')
   },
-  command: ['pull', 'git pull [origin] <current branch>', {
+  command: ['sync', 'git clean -df && git checkout . && git pull [origin] <current branch>', {
     branch: {
       alias: ['b'],
       string: true,
