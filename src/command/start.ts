@@ -41,15 +41,15 @@ export default {
     }
     if (data.publish) {
       cmdArr.push({ key: 'publish', value: 'npm publish' })
-      if (data.tag) {
-        cmdArr.push({
-          key: 'tagAdd', value: async () => {
-            let tagCmdStr = `git tag -a v${newVersion} -m "v${newVersion}" && git push origin --tags`
-            consoleColor.start(tagCmdStr)
-            await exec(tagCmdStr)
-          }
-        })
-      }
+    }
+    if (data.tag) {
+      cmdArr.push({
+        key: 'tagAdd', value: async () => {
+          let tagCmdStr = `git tag -a v${newVersion} -m "v${newVersion}" && git push origin --tags`
+          consoleColor.start(tagCmdStr)
+          await exec(tagCmdStr)
+        }
+      })
     }
     for (let cmd of cmdArr) {
       try {
