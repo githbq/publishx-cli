@@ -23,7 +23,7 @@ export default {
       consoleColor.start(`${zhaopinRegistryStr}`)
       await exec(zhaopinRegistryStr)
     }
-    if (data.taobao || data.npm) {
+    if (data.taobao || data.npm || data.zhaopin) {
       await this.showCurrentRegistry()
     }
     consoleColor.green(`操作结束！`)
