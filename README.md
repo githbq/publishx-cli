@@ -8,7 +8,7 @@
 ## 命令
 > `publishx` 或者 `px`
 
-### px start [comment] [-p] [-f] [-v]
+### px start [comment] [-p] [-f] [-v] [--tag]
 - `px start` 用于简化:
     - npm run lint //代码风格校验[自动检测] *失败终止后续操作*
     - npm run tsc //typescript编译[自动检测]  *失败终止后续操作*
