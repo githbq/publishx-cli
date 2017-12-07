@@ -4,6 +4,7 @@ import { rootPath, cwd } from './consts'
 import { stringify } from './other'
 import * as _ from 'lodash'
 import * as globby from 'globby'
+import * as rimraf from 'rimraf'
 export const io = {
   pathTool,
   resolveOptions(path: string, options: any = { fromRoot: false, fromCwd: false }) {
@@ -29,6 +30,15 @@ export const io = {
   exists(path, options: any = { fromRoot: false, fromCwd: false }) {
     path = this.resolveOptions(path, options)
     return fs.existsAsync(path)
+  },
+  /**
+   *
+   * @param pattern 文件特征字符串
+   */
+  rimraf(pattern: string, options = {}) {
+    return new Promise((resolve) => {
+      rimraf(pattern, options, resolve)
+    })
   },
   /**
    * 将文件或者路径 复制到另一个目录

@@ -96,6 +96,9 @@
 ### px sync
 - 对当前项目进行 `git clean -df && git checkout . && git pull origin [currentBranch]`
 
+### px clear
+- 对当前项目进行 `rimraf **/node_modules`
+
 ### px init
 - 执行开发环境初始化准备工作
 1. 将npm升级到最新版: npm i -g npm
