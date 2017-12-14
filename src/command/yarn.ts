@@ -1,5 +1,8 @@
 
 import { _, exec, getCurrentBranchName, cwd, consoleColor, io } from '../lib'
+import show from './show'
+import * as Listr from 'listr'
+import { Observable } from 'rxjs/Observable'
 /**
  * 配置或者查看yarn registry
  */
@@ -8,6 +11,7 @@ export default {
    * 启动
    */
   async start(data) {
+    // registry 任务
     const registryStr = `yarn config set registry https://registry.npm.taobao.org`
     const npmRegistryStr = `yarn config set registry https://registry.npmjs.org`
     const zhaopinRegistryStr = `yarn config set registry http://npm.zhaopin.com`
@@ -26,6 +30,31 @@ export default {
     if (data.taobao || data.npm || data.zhaopin) {
       await this.showCurrentRegistry()
     }
+
+    // ------------------------install 任务------------------------
+    if (data.install) {
+      consoleColor.time('install 总耗时')
+      /**
+       * 查找所有git项目
+       */
+      const pathModels = await show.findProjectPaths()
+      const tasks = []
+
+      for (let pathModel of pathModels) {
+        tasks.push({
+          title: `执行 yarn install @ ${pathModel.path}`,
+          task: () => {
+            return exec('yarn install ', { cwd: pathModel.path, preventDefault: true }).catch(() => { })
+          }
+        })
+      }
+      const taskManager = new Listr(tasks, { concurrent: 5 })
+      await taskManager.run()
+      consoleColor.timeEnd('install 总耗时')
+      consoleColor.green('yarn install 完毕\n\n', true)
+    }
+    //-------------------------------------------------------
+
     consoleColor.green(`操作结束！`)
   },
   async showCurrentRegistry() {
@@ -36,6 +65,11 @@ export default {
     'yarn',
     '配置或者查看 yarn registry',
     {
+      install: {
+        alias: ['i'],
+        boolean: true,
+        describe: '对找出来的项目执行 yarn install '
+      },
       taobao: {
         alias: ['t'],
         boolean: true,

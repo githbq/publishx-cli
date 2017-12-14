@@ -64,11 +64,13 @@
 ### px tslint
 - 在当前目录生成 tslint.json文件
 
-### px yarn [-t] [-n]
+### px yarn [-t]? [-n]? [-i]?
 - 显示当前yarn registry , -t　taobao -n npmjs，将yarn registry指向taobao 或者 npmjs
+- ` -i ` 执行 ` yarn install `
 
-### px npm [-t] [-n]
+### px npm [-t]? [-n]? [-i]?
 - 显示当前npm registry , -t　taobao -n npmjs,npm registry指向taobao 或者 npmjs
+- ` -i ` 执行 ` npm install `
 
 ### px git init
 - 初始化 git 常用参数
