@@ -111,6 +111,14 @@
 6. 安装全局命令 cnpm: npm i -g cnpm
 7. 初始化 git 默认行为:px git init
 
+### px sass [-v]?
+- 下载并设置本地的 `node-sass` 序列化文件路径
+1. -v node-sass的版本,可选 不加此参数默认下载 `4.5.3` 版本
+ 下载地址:`https://npm.taobao.org/mirrors/node-sass/v4.5.3/win32-x64-48_binding.node`
+  `px sass -v 4.5.3`
+2. 文件下载地址 taobao: `https://npm.taobao.org/mirrors/node-sass`
+   github: `https://github.com/sass/node-sass/releases`
+3.
 ## 查看帮助
 
 - 在对应的命令后面增加　`--help`

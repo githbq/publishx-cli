@@ -1,6 +1,6 @@
 {
     "name": "publishx-cli",
-    "version": "1.4.24",
+    "version": "1.4.25",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "main": "./build/command",
     "bin": {
@@ -19,8 +19,10 @@
         "cli-color": "^1.2.0",
         "debug": "^2.6.6",
         "delay": "^2.0.0",
+        "download": "^6.2.5",
         "fs-extra-promise": "^1.0.1",
         "globby": "^6.1.0",
+        "isos": "^0.0.3",
         "json-stringify-pretty-compact": "^1.0.4",
         "listr": "^0.12.0",
         "lodash": "^4.17.4",
