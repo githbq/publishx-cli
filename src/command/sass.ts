@@ -1,7 +1,7 @@
-// npm config set sass-binary-path D:/node-binaries/node-sass-win32-x64-48_binding.node
+// npm config set sass-binary-path D:/node-binaries/node-sass-win32-x64-57_binding.node
 
-// yarn config set sass-binary-path D:/node-binaries/node-sass-win32-x64-48_binding.node
-//https://npm.taobao.org/mirrors/node-sass/v4.5.3/win32-x64-48_binding.node
+// yarn config set sass-binary-path D:/node-binaries/node-sass-win32-x64-57_binding.node
+//https://npm.taobao.org/mirrors/node-sass/v4.5.3/win32-x64-57_binding.node
 
 
 import { _, exec, getCurrentBranchName, cwd, consoleColor, io, checkOS } from '../lib'
@@ -20,11 +20,11 @@ export default {
     }
     const version = (data.version || '4.5.3').replace(/^v/i, '')
     const dist = `${checkOS.windows ? 'C:' : '~'}/node-binaries`
-    const filename = `node-sass-${version}-win32-x64-48_binding.node`
+    const filename = `node-sass-${version}-win32-x64-57_binding.node`
     const npmCmdStr = `npm config set sass-binary-path ${dist}/${filename}`
     const yarnCmdStr = `yarn config set sass-binary-path ${dist}/${filename}`
 
-    const downloadUrl = `https://npm.taobao.org/mirrors/node-sass/v${version}/win32-x64-48_binding.node`
+    const downloadUrl = `https://npm.taobao.org/mirrors/node-sass/v${version}/win32-x64-57_binding.node`
 
     consoleColor.time('总耗时')
     try {
