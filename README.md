@@ -112,7 +112,7 @@
 7. 初始化 git 默认行为:px git init
 
 ### px sass
-- 操作系统设置 git config set sass-binary-site 为 taobaonpm 解决node-sass安装缓慢问题
+- 操作系统设置 npm|yarn config set sass-binary-site 为 http://npm.taobao.org/mirrors/node-sass 解决node-sass安装缓慢问题
 ## 查看帮助
 
 - 在对应的命令后面增加　`--help`

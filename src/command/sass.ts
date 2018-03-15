@@ -19,11 +19,13 @@ export default {
 
     consoleColor.time('总耗时')
     try {
+      consoleColor.start(npmCmdStr)
       await exec(npmCmdStr)
     } catch (e) {
       consoleColor.error(e)
     }
     try {
+      consoleColor.start(yarnCmdStr)
       await exec(yarnCmdStr)
     } catch (e) {
       consoleColor.error(e)
@@ -32,7 +34,7 @@ export default {
   },
   command: [
     'sass',
-    '操作系统设置 git config set sass-binary-site 为 taobaonpm 解决node-sass安装缓慢问题',
+    '操作系统设置 npm|yarn config set sass-binary-site 为 taobaonpm 解决node-sass安装缓慢问题',
     {
     }
   ]
