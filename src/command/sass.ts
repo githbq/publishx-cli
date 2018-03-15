@@ -28,7 +28,6 @@ export default {
       consoleColor.start(yarnCmdStr)
       await exec(yarnCmdStr)
     } catch (e) {
-      consoleColor.error(e)
     }
     consoleColor.timeEnd('总耗时')
   },
