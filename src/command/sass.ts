@@ -32,7 +32,7 @@ export default {
   },
   command: [
     'sass',
-    'windows操作系统设置 sass-binary-site 为 taobaonpm 解决node-sass安装缓慢问题',
+    '操作系统设置 git config set sass-binary-site 为 taobaonpm 解决node-sass安装缓慢问题',
     {
     }
   ]
