@@ -12,29 +12,34 @@ export default {
     async start(data) {
         consoleColor.time('总耗时')
         /**
-         * 查找所有git项目
+         * 查找所有nodejs项目
          */
         const pathModels = await show.findProjectPaths()
         const tasks = []
-
+        let tool = data.npm ? 'npm' : 'yarn'
         for (let pathModel of pathModels) {
             tasks.push({
-                title: `执行 yarn install @ ${pathModel.path}`,
+                title: `执行 ${tool} install @ ${pathModel.path}`,
                 task: () => {
-                    return exec('yarn install ', { cwd: pathModel.path, preventDefault: true }).catch(() => { })
+                    return exec(`${tool} install `, { cwd: pathModel.path, preventDefault: true }).catch(() => { })
                 }
             })
         }
         const taskManager = new Listr(tasks, { concurrent: true })
         await taskManager.run()
         consoleColor.timeEnd('总耗时')
-        consoleColor.green('yarn install 完毕\n\n', true)
+        consoleColor.green(`${tool} install 完毕\n\n`, true)
     },
     command: [
         'install',
         '执行yarn install',
         {
-
+            npm: {
+                alias: 'n',
+                describe: '使用npm安装库',
+                boolean: true,
+                default: false
+            },
         }
     ]
 }
