@@ -1,4 +1,5 @@
 import * as  stringifyOrigin from 'json-stringify-pretty-compact'
+import * as Bluebird from 'bluebird'
 import * as lodash from 'lodash'
 import * as pathTool from 'path'
 import spawn from 'spawn-helper'
@@ -6,6 +7,7 @@ import * as  prettyMsOrigin from 'pretty-ms'
 import { rootPath, cwd } from './consts'
 import { consoleColor } from './consoleColor'
 
+export const _Promise = Bluebird
 /**lodash */
 export const _ = lodash
 /**

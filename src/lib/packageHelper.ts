@@ -4,22 +4,22 @@ import { cwd } from './consts'
 import { io } from './io'
 export const packageHelper = {
     cwd: null,
-    getPath() {
-        return pathTool.join(this.cwd || cwd, 'package.json')
+    getPath(_cwd?: string) {
+        return pathTool.join(_cwd || this.cwd || cwd, 'package.json')
     },
-    async get() {
-        if (await io.exists(this.getPath())) {
-            return require(this.getPath())
+    get(_cwd?: string) {
+        if (io.exists(this.getPath(_cwd))) {
+            return require(this.getPath(_cwd))
         } else {
             return { scripts: {} }
         }
     },
-    write(jsonObj: object) {
-        return io.write(this.getPath(), jsonObj)
+    write(jsonObj: object, _cwd?: string) {
+        return io.write(this.getPath(_cwd), jsonObj)
     },
     //获取version
-    getVersion(currentVersion?) {
-        let version = currentVersion || this.get().version
+    getVersion(currentVersion?, _cwd?: string) {
+        let version = currentVersion || this.get(_cwd).version
         if (!semver.valid(version)) {
             throw new Error('Invalid version number found in package.json, please make sure it is valid')
         }

@@ -1,6 +1,6 @@
 {
     "name": "publishx-cli",
-    "version": "1.4.35",
+    "version": "1.4.36",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "main": "./build/command",
     "bin": {
@@ -16,6 +16,7 @@
         "lint": "tslint ./src/**/*.ts"
     },
     "dependencies": {
+        "bluebird": "^3.5.1",
         "cli-color": "^1.2.0",
         "debug": "^2.6.6",
         "delay": "^2.0.0",
