@@ -11,7 +11,7 @@ export default {
     let cmdArr = []
     const packageJSON = await packageHelper.get()
     const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
-    if (packageJSON.scripts['lint']) {
+    if (packageJSON.scripts['lint'] && !packageJSON['pre-commit']) {
       cmdArr.push({ key: 'lint', value: 'npm run lint' })
     }
     if (isTs) {
