@@ -20,8 +20,8 @@ export default {
         for (let pathModel of pathModels) {
             tasks.push({
                 title: `执行 ${tool} install @ ${pathModel.path}`,
-                task: () => {
-                    const packageJson = packageHelper.get(io.pathTool.resolve(pathModel.path))
+                task: async () => {
+                    const packageJson = await packageHelper.get(io.pathTool.resolve(pathModel.path))
                     const { dependencies, devDependencies } = packageJson
                     const existsPackages = { ...dependencies, ...devDependencies }
                     const _PromiseTasks = []
