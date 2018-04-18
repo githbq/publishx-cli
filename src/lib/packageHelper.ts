@@ -8,8 +8,9 @@ export const packageHelper = {
         return pathTool.join(_cwd || this.cwd || cwd, 'package.json')
     },
     async get(_cwd?: string) {
-        if (await io.exists(this.getPath(_cwd))) {
-            return require(this.getPath(_cwd))
+        const packagePath = this.getPath(_cwd)
+        if (await io.exists(packagePath)) {
+            return require(packagePath)
         } else {
             return { scripts: {} }
         }
