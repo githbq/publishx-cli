@@ -24,29 +24,33 @@ export default {
                     const packageJson = await packageHelper.get(io.pathTool.resolve(pathModel.path))
                     const { dependencies, devDependencies } = packageJson
                     const existsPackages = { ...dependencies, ...devDependencies }
-                    const _PromiseTasks = []
+                    const promiseTasks = []
+                    const fileLibPromiseTasks = []
                     Object.keys(existsPackages).forEach(key => {
                         const value = existsPackages[key]
                         let cmdStr
-                        if (value.trim().indexOf('file:') !== 0) {
-                            if (data.npm) {
-                                cmdStr = `${tool} install ${key}@${value} --no-save --no-shrinkwrap --no-package-lock`
-                            } else {
-                                cmdStr = `${tool} install ${key}@${value} --no-lockfile`
-                            }
-                            _PromiseTasks.push({ cmdStr, options: { cwd: pathModel.path, preventDefault: true } })
+                        let taskQueue = promiseTasks
+                        if (value.trim().indexOf('file:') === 0) {
+                            taskQueue = fileLibPromiseTasks
                         }
+                        if (data.npm) {
+                            cmdStr = `${tool} install ${key}@${value} --no-save --no-shrinkwrap --no-package-lock`
+                        } else {
+                            cmdStr = `${tool} install ${key}@${value} --no-lockfile`
+                        }
+                        taskQueue.push({ cmdStr, options: { cwd: pathModel.path, preventDefault: true } })
+
                     })
 
                     return _Promise.map(
-                        _PromiseTasks,
+                        [promiseTasks, ...fileLibPromiseTasks],
                         (n) => exec(n.cmdStr, n.options).catch(() => { }),
-                        { concurrency: Infinity }
+                        { concurrency: 1 }
                     )
                 }
             })
         }
-        const taskManager = new Listr(tasks, { concurrent: 5 })
+        const taskManager = new Listr(tasks, { concurrent: 1 })
         await taskManager.run()
         consoleColor.timeEnd('总耗时')
         consoleColor.green(`${tool} install 完毕\n\n`, true)
