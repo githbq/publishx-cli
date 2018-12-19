@@ -7,8 +7,7 @@ export default {
   /**
    * 启动
    */
-  async start(data) { 
-    console.log(data)
+  async start(data) {
     if (data.tagNames) {
       consoleColor.time('总耗时')
       const tags = data.tagNames.split(',').filter(n => !!n)
