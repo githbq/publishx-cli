@@ -7,7 +7,8 @@ export default {
   /**
    * 启动
    */
-  async start(data) {
+  async start(data) { 
+    console.log(data)
     if (data.tagNames) {
       consoleColor.time('总耗时')
       const tags = data.tagNames.split(',').filter(n => !!n)
@@ -16,13 +17,17 @@ export default {
       })
       for (let cmdStr of cmdStrs) {
         consoleColor.start(cmdStr)
-        await exec(cmdStr)
+        try {
+          await exec(cmdStr)
+        } catch (error) {
+          consoleColor.error(error)
+        }
       }
       consoleColor.timeEnd('总耗时')
-    } 
+    }
   },
   command: [
-    'clear-tag <tagNames>', '多个tag以,分割  git tag --delete [tagName] && git push origin :refs/tags/[tagName]',
+    'clear-tags <tagNames>', '多个tag以,分割  git tag --delete [tagName] && git push origin :refs/tags/[tagName]',
     {
     }
   ]
