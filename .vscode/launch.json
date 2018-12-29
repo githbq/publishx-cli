@@ -9,7 +9,7 @@
             "protocol": "inspector",
             "name": "启动程序",
             "program": "${workspaceRoot}/build/index.js",
-            "args": ["clear-tags" ,"test"],
+            "args": ["install" ],
             "cwd": "${workspaceRoot}"
         }
         //下面这种方式调试需要先编译 会比较慢,优点是不需要 `ctrl+shift+b` 监听编译ts

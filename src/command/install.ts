@@ -21,11 +21,13 @@ export default {
             tasks.push({
                 title: `执行 ${tool} install @ ${pathModel.path}`,
                 task: async () => {
+                    debugger
                     const packageJson = await packageHelper.get(io.pathTool.resolve(pathModel.path))
                     const { dependencies, devDependencies } = packageJson
                     const existsPackages = { ...dependencies, ...devDependencies }
                     const promiseTasks = []
                     const fileLibPromiseTasks = []
+                    debugger
                     Object.keys(existsPackages).forEach(key => {
                         const value = existsPackages[key]
                         let cmdStr
@@ -36,17 +38,20 @@ export default {
                         if (data.npm) {
                             cmdStr = `${tool} install ${key}@${value} --no-save --no-shrinkwrap --no-package-lock`
                         } else {
-                            cmdStr = `${tool} install ${key}@${value} --no-lockfile`
+                            cmdStr = `${tool} install ${key}@${value} --no-save --no-lockfile`
                         }
                         taskQueue.push({ cmdStr, options: { cwd: pathModel.path, preventDefault: true } })
 
                     })
 
-                    return _Promise.map(
-                        [promiseTasks, ...fileLibPromiseTasks],
-                        (n) => exec(n.cmdStr, n.options).catch(() => { }),
+                    const result = _Promise.map(
+                        [...promiseTasks, ...fileLibPromiseTasks],
+                        (n) => {
+                            return exec(n.cmdStr, n.options).catch(() => { })
+                        },
                         { concurrency: 1 }
                     )
+                    return result
                 }
             })
         }
