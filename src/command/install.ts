@@ -1,7 +1,8 @@
-import { _, exec, getCurrentBranchName, cwd, consoleColor, io } from '../lib'
+import { _, _Promise, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
 import show from './show'
 import * as Listr from 'listr'
 import { Observable } from 'rxjs/Observable'
+import { listenerCount } from 'cluster'
 /**
  * 安装node项目库
  */
@@ -10,29 +11,68 @@ export default {
      * 启动
      */
     async start(data) {
-        consoleColor.time('总耗时')
+        consoleColor.time('总耗时') 
         /**
          * 查找所有nodejs项目
          */
         const pathModels = await show.findProjectPaths()
-        const tasks = []
+        let tasks = []
         let tool = data.npm ? 'npm' : 'yarn'
+        const simpleProjects = []
+        const complexProjects = []
         for (let pathModel of pathModels) {
+
+            const packageJson = await packageHelper.get(io.pathTool.resolve(pathModel.path))
+            const { dependencies, devDependencies } = packageJson
+            const packages = { ...dependencies, ...devDependencies }
+
+            const isComplex = Object.values(packages).some((url: String) => url.trim().indexOf('file:') === 0)
+            let cmdStr = ''
+            if (data.npm) {
+                cmdStr = `${tool} install  --no-save --no-shrinkwrap --no-package-lock`
+            } else {
+                cmdStr = `${tool} install --no-save --no-lockfile`
+            }
+            const title = `${tool} install @ ${pathModel.path}`
+            const target = isComplex ? complexProjects : simpleProjects
+            target.push({ ...pathModel, cmdStr, title })
+        }
+        
+        const simpleTasks = new Listr([
+            ...simpleProjects.map(n => {
+                return { title: n.title, task: () => exec(n.cmdStr, { cwd: n.path, preventDefault: true }).catch(error => { }) }
+            })
+        ], { concurrent: data.concurrent || 2 })
+        const complexTasks = new Listr([
+            ...complexProjects.map(n => {
+                return { title: n.title, task: () => exec(n.cmdStr, { cwd: n.path, preventDefault: true }).catch(error => { }) }
+            })
+        ])
+        if (simpleProjects.length > 0) {
             tasks.push({
-                title: `执行 ${tool} install @ ${pathModel.path} --no-save`,
+                title: '安装普通工程',
                 task: () => {
-                    return exec(`${tool} install --no-save `, { cwd: pathModel.path, preventDefault: true }).catch(() => { })
+                    return simpleTasks
                 }
             })
         }
-        const taskManager = new Listr(tasks, { concurrent: true })
+        if (complexProjects.length > 0) {
+            tasks.push({
+                title: '安装有文件级依赖工程',
+                task: () => {
+                    return complexTasks
+                }
+            })
+        }
+
+        const taskManager = new Listr(tasks)
         await taskManager.run()
         consoleColor.timeEnd('总耗时')
         consoleColor.green(`${tool} install 完毕\n\n`, true)
     },
     command: [
         'install',
-        '执行yarn install',
+        '默认执行 yarn install',
         {
             npm: {
                 alias: 'n',
@@ -40,6 +80,12 @@ export default {
                 boolean: true,
                 default: false
             },
+            concurrent: {
+                alias: 'c',
+                describe: '普通工程并发安装数',
+                number: true,
+                default: 2
+            }
         }
     ]
 }
