@@ -1,11 +1,11 @@
 {
-    "name": "publishx-cli",
+    "name": "publishx2-cli",
     "version": "1.4.47",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "main": "./build/command",
     "bin": {
-        "publishx": "./bin.js",
-        "px": "./bin.js"
+        "publishx2": "./bin.js",
+        "px2": "./bin.js"
     },
     "scripts": {
         "start": "node run",
