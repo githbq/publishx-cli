@@ -8,7 +8,7 @@ export default {
    * 启动
    */
   async start(data) {
-    const cmdStr = `git add . && git commit -am "${data.comment}"`
+    const cmdStr = `git add . && git commit -am "${data.comment}" ${data.noVerify ? '--no-verify' : ''}`
     consoleColor.start(cmdStr)
     consoleColor.time('耗时')
     try {
@@ -20,8 +20,13 @@ export default {
     consoleColor.timeEnd('耗时')
   },
   command: [
-    'commit <comment>', 'git add . && git commit -am [comment]',
+    'commit <comment>', 'git add . && git commit -am [comment] --no-verify?',
     {
+      noVerify: {
+        alias: ['n'],
+        boolean: true,
+        describe: '是否不验证 --no-verify'
+      }
     }
   ]
 }
