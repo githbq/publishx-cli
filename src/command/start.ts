@@ -31,8 +31,8 @@ export default {
     const branchName = await getCurrentBranchName()//当前项目分支名
     cmdArr = cmdArr.concat([
       { key: 'add', value: 'git add .' },
-      { key: 'commit', value: `git commit -am "${data.comment}"` },
-      { key: 'push', value: `git push origin ${branchName}` }
+      { key: 'commit', value: `git commit -am "${data.comment}" ${data.noVerify ? '--no-verify' : ''}` },
+      { key: 'push', value: `git push origin ${branchName}` } 
     ])
 
     if (data.force) {//强推
@@ -124,6 +124,11 @@ export default {
       boolean: true,
       default: false,
       describe: 'npm publish时自动添加tag'
+    },
+    noVerify: {
+      alias: ['n'],
+      boolean: true,
+      describe: '是否不验证 --no-verify'
     }
   }]
 }

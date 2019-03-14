@@ -1,6 +1,6 @@
 {
     "name": "publishx-cli",
-    "version": "1.4.48",
+    "version": "1.4.49",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "main": "./build/command",
     "bin": {
@@ -13,7 +13,7 @@
         "tsc": "npm run clear && tsc",
         "tsc:w": "npm run clear && tsc -w",
         "p": "npm run tsc && npm publish",
-        "lint": "tslint ./src/**/*.ts"
+        "lint": "tslint ./src/**/*.ts --fix"
     },
     "dependencies": {
         "bluebird": "^3.5.1",
