@@ -11,7 +11,7 @@ export default {
     let cmdArr = []
     const packageJSON = await packageHelper.get()
     const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
-    if (packageJSON.scripts['lint'] && !packageJSON['pre-commit']) {
+    if (packageJSON.scripts['lint'] && !packageJSON['pre-commit'] && !data.noVerify) {
       cmdArr.push({ key: 'lint', value: 'npm run lint' })
     }
     if (isTs) {
@@ -32,7 +32,7 @@ export default {
     cmdArr = cmdArr.concat([
       { key: 'add', value: 'git add .' },
       { key: 'commit', value: `git commit -am "${data.comment}" ${data.noVerify ? '--no-verify' : ''}` },
-      { key: 'push', value: `git push origin ${branchName}` } 
+      { key: 'push', value: `git push origin ${branchName}` }
     ])
 
     if (data.force) {//强推
