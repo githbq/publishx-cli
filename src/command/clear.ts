@@ -8,15 +8,20 @@ export default {
    * 启动
    */
   async start(data) {
-    const pattern = '**/node_modules'
-    const cmdStr = `rimraf **/node_modules`
-    consoleColor.start(cmdStr)
+    const patternString = '**/package-lock.json **/yarn.lock **/node_modules'
+    const patterns = patternString.split(' ')
+
+    consoleColor.start('rimraf ' + patternString) 
     consoleColor.time('耗时')
-    try {
-      await io.rimraf(pattern)
-    }
-    catch (e) {
-      consoleColor.red(`发生异常:${e.message}`, false)
+    for (let pattern of patterns) {
+      const cmdStr = `rimraf ${pattern}`
+     
+      try {
+        await io.rimraf(pattern)
+      }
+      catch (e) {
+        consoleColor.red(`发生异常:${e.message}`, false)
+      } 
     }
     consoleColor.timeEnd('耗时')
   },

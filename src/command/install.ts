@@ -11,13 +11,17 @@ export default {
      * 启动
      */
     async start(data) {
-        consoleColor.time('总耗时') 
+        consoleColor.time('总耗时')
         /**
          * 查找所有nodejs项目
          */
+        const clearCMDStr = 'px clear'
+        await exec(clearCMDStr, { cwd }).catch(error => { })
+
+
         const pathModels = await show.findProjectPaths()
         let tasks = []
-        let tool = data.npm ? 'npm' : 'yarn'
+        let tool = data.yarn ? 'yarn' : 'npm'
         const simpleProjects = []
         const complexProjects = []
         for (let pathModel of pathModels) {
@@ -28,16 +32,17 @@ export default {
 
             const isComplex = Object.values(packages).some((url: String) => url.trim().indexOf('file:') === 0)
             let cmdStr = ''
-            if (data.npm) {
-                cmdStr = `${tool} install  --no-save --no-shrinkwrap --no-package-lock`
-            } else {
+            if (data.yarn) {
                 cmdStr = `${tool} install --no-save --no-lockfile`
+            }
+            else {
+                cmdStr = `${tool} install  --no-save --no-shrinkwrap --no-package-lock`
             }
             const title = `${tool} install @ ${pathModel.path}`
             const target = isComplex ? complexProjects : simpleProjects
             target.push({ ...pathModel, cmdStr, title })
         }
-        
+
         const simpleTasks = new Listr([
             ...simpleProjects.map(n => {
                 return { title: n.title, task: () => exec(n.cmdStr, { cwd: n.path, preventDefault: true }).catch(error => { }) }
