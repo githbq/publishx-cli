@@ -16,7 +16,7 @@ export default {
       const { data } = await axios.get(target)
       hash.update(data)
       const contentHash = hash.digest('hex')
-      consoleColor.green(`路径:${target} => hash:[${contentHash}]    || 文件内容长度:${data.length},`)
+      consoleColor.green(`路径:${target} => hash:[${contentHash}]    || 文件内容长度:${data.length}`)
     }
     else {
       let files = []
@@ -31,7 +31,7 @@ export default {
           const content = await io.read(file)
           hash.update(content)
           const contentHash = hash.digest('hex')
-          consoleColor.green(`路径:${file} => hash:[${contentHash}]    || 文件内容长度:${content.length},`)
+          consoleColor.green(`路径:${file} => hash:[${contentHash}]    || 文件内容长度:${content.length}`)
         }
         else {
           consoleColor.red(`路径文件:${file}不存在`)
