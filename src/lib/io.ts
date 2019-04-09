@@ -6,6 +6,7 @@ import * as _ from 'lodash'
 import * as globby from 'globby'
 import * as rimraf from 'rimraf'
 export const io = {
+  fs,
   pathTool,
   resolveOptions(path: string, options: any = { fromRoot: false, fromCwd: false }) {
     path = pathTool.join.apply(null, [].concat(path))
