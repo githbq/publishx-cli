@@ -18,7 +18,6 @@
         "types": [
             "bluebird",
             "cli-color",
-            "fs-extra-promise",
             "lodash",
             "node",
             "semver"

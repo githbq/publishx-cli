@@ -24,7 +24,7 @@ export default {
     async findProjectPaths(cb?: Function): Promise<Array<PathModel>> {
         const spinner = consoleColor.showSpiner(`正在分析目录:${cwd}`)
         consoleColor.time('耗时')
-        let paths: Array<string> = await io.globby(['**/package.json', '!**/{__test__,__mocks__,node_modules,types,example,examples,build,temp,template,dist}/**'], { dot: false })
+        let paths: Array<string> = await io.globby(['**/package.json', '!**/{__test__,__mocks__,node_modules,types,example,examples,build,temp,template,templates,dist}/**'], { dot: false })
         //将路径转换到上一级 也就是文件夹
         paths = paths.map(n => io.pathTool.dirname(n))
         const projects: Array<PathModel> = []

@@ -36,7 +36,7 @@ export default {
     ])
 
     if (data.force) {//强推
-      const pushConfig: any = _.find(cmdArr, { key: 'push' })
+      const pushConfig: any = _.find(cmdArr, n => n.key === 'push')
       pushConfig && (pushConfig.value += ` --force`)
     }
     if (data.publish) {
