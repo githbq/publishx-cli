@@ -11,7 +11,7 @@ export default {
      * 启动
      */
     async start(data) {
-        const helpStr = ` 
+        const helpStr = `  
          git config --global user.name "Your Name"
          git config --global user.email "email@example.com" 
          //使用淘宝npm

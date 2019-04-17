@@ -11,6 +11,10 @@ export default {
    * 启动
    */
   async start(data) {
+    consoleColor.yellow(`另一种实现方法:
+    npm config set registry http://registry.npm.taobao.org && 
+    npm config set @zpfe:registry http://npm.zhaopin.com
+    `)
     // registry 任务
     const registryStr = `npm config set registry https://registry.npm.taobao.org`
     const npmRegistryStr = `npm config set registry https://registry.npmjs.org`
