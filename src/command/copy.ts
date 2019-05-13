@@ -32,21 +32,28 @@ export default {
         let count = 0
         const tasks = []
         if (data.all) {
+            let concurrency = 20
+            consoleColor.time(`删除目标文件夹${dir}`)
+            await io.rimraf(io.pathTool.resolve(dir))
+                .catch(() => { })
+            consoleColor.timeEnd(`删除目标文件夹${dir}`)
             // 表示直接复制文件，而非以项目的方式
-            const spiner = consoleColor.showSpiner(`开始以10个文件并行的方式复制所有文件到目标文件夹=>${data.target}`)
+            const spiner = consoleColor.showSpiner(`开始以${concurrency}个文件并行的方式复制所有文件到目标文件夹=>${data.target}`)
             let fileCount = pathModels.length
+
             await BlueBird.map(pathModels, (pathModel) => {
                 const relativePath = io.pathTool.relative(cwd, pathModel.path)
                 const fileTartgetPath = io.pathTool.join(dir, relativePath)
+
                 return io.copy(pathModel.path, fileTartgetPath)
                     .then(() => {
                         fileCount--
                         spiner.info(`剩余${fileCount}个文件`)
-                    }, () => {
+                    }, (error) => {
                         fileCount--
-                        spiner.info(`发生一个错误，还剩余${fileCount}个文件`)
+                        spiner.info(`error:${relativePath}，还剩余${fileCount}个文件`)
                     })
-            }, { concurrency: 10 })
+            }, { concurrency })
             spiner.ok(`所有${pathModels.length}个文件复制完毕`)
             consoleColor.green(`\n cd ${data.target}`)
         } else {

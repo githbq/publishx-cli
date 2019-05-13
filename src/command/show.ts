@@ -28,16 +28,16 @@ export default {
         consoleColor.time('耗时')
         let paths: Array<string> = null
         if (allFiles) {
-            paths = await io.globby(['**/*', '!**/{__test__,__mocks__,node_modules,types,build,temp,template,templates,dist}/**'], { dot: false })
+            paths = await io.globby(['**/*', '!**/{node_modules,workspace,git-workspace}/**/*'], { dot: true, nodir: true })
         } else {
             paths = await io.globby(['**/package.json', '!**/{__test__,__mocks__,node_modules,types,example,examples,build,temp,template,templates,dist}/**'], { dot: false })
         }
-        //将路径转换到上一级 也就是文件夹
-        paths = paths.map(n => io.pathTool.dirname(n))
-        const projects: Array<PathModel> = []
         spinner.ok(`目录${cwd}分析结束`)
         let count = 1
+        const projects: Array<PathModel> = []
         if (!allFiles) {
+            //将路径转换到上一级 也就是文件夹
+            paths = paths.map(n => io.pathTool.dirname(n))
             for (let projectPath of paths) {
                 const isGit = await io.exists(io.pathTool.join(projectPath, '.git'))
                 let pathModel = { path: projectPath, isGit }
