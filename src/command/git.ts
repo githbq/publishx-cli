@@ -1,7 +1,7 @@
 import { _, exec, getCurrentBranchName, cwd, consoleColor, io } from '../lib'
 import show from './show'
 import * as Listr from 'listr'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 
 /**
  * git初始化

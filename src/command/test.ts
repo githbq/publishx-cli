@@ -1,5 +1,5 @@
 import { _, requireCwd, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import * as  delay from 'delay'
 import * as Listr from 'listr'
 /**

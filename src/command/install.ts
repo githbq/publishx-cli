@@ -1,7 +1,7 @@
 import { _, _Promise, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
 import show from './show'
 import * as Listr from 'listr'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import { listenerCount } from 'cluster'
 /**
  * 安装node项目库

@@ -2,7 +2,7 @@
 import { _, exec, getCurrentBranchName, cwd, consoleColor, io } from '../lib'
 import show from './show'
 import * as Listr from 'listr'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 /**
  * 配置或者查看npm registry
  */

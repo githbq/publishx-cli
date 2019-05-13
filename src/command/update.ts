@@ -1,6 +1,6 @@
 import { _, stringify, exec, getCurrentBranchName, cwd, consoleColor, io } from '../lib'
 import show from './show'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import * as Listr from 'listr'
 import * as  delay from 'delay'
 /**
