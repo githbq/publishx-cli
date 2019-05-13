@@ -10,7 +10,7 @@ interface PathModel {
      */
     isGit: boolean,
     // 表示该 path 是一个文件路径而非项目文件夹路径
-    isFilePath: boolean
+    isFilePath?: boolean
 }
 /**
  * 查看当前目录所有git项目

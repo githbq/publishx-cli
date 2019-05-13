@@ -1,7 +1,9 @@
 import * as Listr from 'listr'
 import { Observable } from 'rxjs'
+import *  as  BlueBird from 'bluebird'
 import { _, exec, cwd, consoleColor, io } from '../lib'
 import show from './show'
+
 
 
 /**
@@ -30,13 +32,23 @@ export default {
         let count = 0
         const tasks = []
         if (data.all) {
-            const copyPromises = []
-            for (let pathModel of pathModels) {
+            // 表示直接复制文件，而非以项目的方式
+            const spiner = consoleColor.showSpiner(`开始以10个文件并行的方式复制所有文件到目标文件夹=>${data.target}`)
+            let fileCount = pathModels.length
+            await BlueBird.map(pathModels, (pathModel) => {
                 const relativePath = io.pathTool.relative(cwd, pathModel.path)
                 const fileTartgetPath = io.pathTool.join(dir, relativePath)
-                copyPromises.push(io.copy(pathModel.path, fileTartgetPath).catch(() => { }))
-            }
-            return Promise.all(copyPromises)
+                return io.copy(pathModel.path, fileTartgetPath)
+                    .then(() => {
+                        fileCount--
+                        spiner.info(`剩余${fileCount}个文件`)
+                    }, () => {
+                        fileCount--
+                        spiner.info(`发生一个错误，还剩余${fileCount}个文件`)
+                    })
+            }, { concurrency: 10 })
+            spiner.ok(`所有${pathModels.length}个文件复制完毕`)
+            consoleColor.green(`\n cd ${data.target}`)
         } else {
             for (let p of pathModels) {
                 tasks.push({
@@ -55,11 +67,11 @@ export default {
         consoleColor.timeEnd('总耗时')
         consoleColor.green('复制 完毕\n\n', true)
     },
-    async copy(dir, p, noCommit) { 
+    async copy(dir, p, noCommit) {
         const commitCmdStr = `git add . && git commit -am "commit for copy"`
         let projectFiles
         const targetPath = io.pathTool.join(dir, p.path)
-        return new Observable((observer) => { 
+        return new Observable((observer) => {
             observer.next(`deleting: ${targetPath}`)
             io.delete(io.pathTool.resolve(targetPath))
                 .catch(() => { })

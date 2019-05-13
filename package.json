@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "axios": "^0.18.0",
-        "bluebird": "^3.5.1",
+        "bluebird": "^3.5.4",
         "cli-color": "^1.2.0",
         "crypto": "^1.0.1",
         "debug": "^2.6.6",
