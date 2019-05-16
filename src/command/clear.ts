@@ -8,7 +8,7 @@ export default {
    * 启动
    */
   async start(data) {
-    const patternString = '**/package-lock.json **/yarn.lock **/node_modules'
+    const patternString = '**/node_modules **/package-lock.json **/yarn.lock '
     const patterns = patternString.split(' ')
 
     consoleColor.start('rimraf ' + patternString) 
