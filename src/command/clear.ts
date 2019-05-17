@@ -11,17 +11,19 @@ export default {
     const patternString = '**/node_modules **/package-lock.json **/yarn.lock'
     const patterns = patternString.split(' ')
 
-    consoleColor.start('rimraf ' + patternString) 
+    consoleColor.start('rimraf ' + patternString)
     consoleColor.time('耗时')
     for (let pattern of patterns) {
-      const cmdStr = `rimraf ${pattern}`
-     
-      try {
-        await io.rimraf(pattern)
+      if (pattern) {
+        const cmdStr = `rimraf ${pattern}`
+
+        try {
+          await io.rimraf(pattern)
+        }
+        catch (e) {
+          consoleColor.red(`发生异常:${e.message}`, false)
+        }
       }
-      catch (e) {
-        consoleColor.red(`发生异常:${e.message}`, false)
-      } 
     }
     consoleColor.timeEnd('耗时')
   },
