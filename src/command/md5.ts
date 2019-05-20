@@ -21,7 +21,7 @@ export default {
     else {
       let files = []
       if (await io.fs.isDirectoryAsync(io.pathTool.join(cwd, target))) {
-        files = await io.globby(['*.*', '!*.map'], { cwd: io.pathTool.join(cwd, target), absolute: true, dot: false, nodir: true })
+        files = await io.globby(['**/*.*', '!*.map'], { cwd: io.pathTool.join(cwd, target), absolute: true, dot: false, nodir: true })
       } else {
         files = [target]
       }
