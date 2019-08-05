@@ -17,7 +17,9 @@
         "typeRoots": ["node_modules/@types"],
         "types": [
             "bluebird",
-            "cli-color", 
+            "cli-color",
+            "fs-extra",
+            "lodash",
             "node",
             "semver"
         ],

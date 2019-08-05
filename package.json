@@ -26,6 +26,7 @@
         "debug": "^2.6.6",
         "delay": "^2.0.0",
         "download": "^6.2.5",
+        "fs-extra": "^8.1.0",
         "fs-extra-promise": "^1.0.1",
         "globby": "^6.1.0",
         "isos": "^0.0.3",
@@ -47,6 +48,7 @@
     "devDependencies": {
         "@types/bluebird": "^3.5.3",
         "@types/cli-color": "^0.3.29",
+        "@types/fs-extra": "^8.0.0",
         "@types/lodash": "^4.14.123",
         "@types/node": "^6.0.48",
         "@types/semver": "^5.3.31",
