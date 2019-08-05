@@ -1,1 +1,1 @@
- "dev": "NODE_OPTIONS=--max_old_space_size=4096 node_modules/.bin/zpfe-mobile dev",
+ "dev": "NODE_OPTIONS=--max_old_space_size=4096 node_modules/.bin/xxx dev",
