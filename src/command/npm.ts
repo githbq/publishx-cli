@@ -13,12 +13,12 @@ export default {
   async start(data) {
     consoleColor.yellow(`另一种实现方法:
     npm config set registry http://registry.npm.taobao.org && 
-    npm config set @zpfe:registry http://npm.zhaopin.com
+    npm config set @xxxx:registry https://registry.npmjs.org
     `)
     // registry 任务
     const registryStr = `npm config set registry https://registry.npm.taobao.org`
     const npmRegistryStr = `npm config set registry https://registry.npmjs.org`
-    const zhaopinRegistryStr = `npm config set registry http://npm.zhaopin.com`
+    const jdRegistryStr = `npm config set registry http://jnpm.cbpmgt.com`
     await this.showCurrentRegistry()
     if (data.taobao) {
       consoleColor.start(`${registryStr}`)
@@ -27,11 +27,11 @@ export default {
       consoleColor.start(`${npmRegistryStr}`)
       await exec(npmRegistryStr)
     }
-    else if (data.zhaopin) {
-      consoleColor.start(`${zhaopinRegistryStr}`)
-      await exec(zhaopinRegistryStr)
+    else if (data.jd) {
+      consoleColor.start(`${jdRegistryStr}`)
+      await exec(jdRegistryStr)
     }
-    if (data.taobao || data.npm || data.zhaopin) {
+    if (data.taobao || data.npm || data.jd) {
       await this.showCurrentRegistry()
     }
     // ------------------------install 任务------------------------
@@ -83,10 +83,10 @@ export default {
         boolean: true,
         describe: '将 npm 默认 registry 设置为https://registry.npmjs.org'
       },
-      zhaopin: {
-        alias: ['z'],
+      jd: {
+        alias: ['j'],
         boolean: true,
-        describe: '将 npm 默认 registry 设置为http://npm.zhaopin.com'
+        describe: '将 npm 默认 registry 设置为 http://jnpm.cbpmgt.com/'
       }
     },
 

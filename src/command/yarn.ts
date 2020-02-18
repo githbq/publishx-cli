@@ -14,7 +14,7 @@ export default {
     // registry 任务
     const registryStr = `yarn config set registry https://registry.npm.taobao.org`
     const npmRegistryStr = `yarn config set registry https://registry.npmjs.org`
-    const zhaopinRegistryStr = `yarn config set registry http://npm.zhaopin.com`
+    const jdRegistryStr = `yarn config set registry http://npm.cbpmgt.com`
     await this.showCurrentRegistry()
     if (data.taobao) {
       consoleColor.start(`${registryStr}`)
@@ -23,11 +23,11 @@ export default {
       consoleColor.start(`${npmRegistryStr}`)
       await exec(npmRegistryStr)
     }
-    else if (data.zhaopin) {
-      consoleColor.start(`${zhaopinRegistryStr}`)
-      await exec(zhaopinRegistryStr)
+    else if (data.jd) {
+      consoleColor.start(`${jdRegistryStr}`)
+      await exec(jdRegistryStr)
     }
-    if (data.taobao || data.npm || data.zhaopin) {
+    if (data.taobao || data.npm || data.jd) {
       await this.showCurrentRegistry()
     }
 
@@ -80,11 +80,11 @@ export default {
         boolean: true,
         describe: '将 yarn 默认 registry 设置为https://registry.npmjs.org'
       },
-      zhaopin: {
-        alias: ['z'],
+      jd: {
+        alias: ['j'],
         boolean: true,
-        describe: '将 yarn 默认 registry 设置为http://npm.zhaopin.com'
-      }
+        describe: '将 yarn 默认 registry 设置为 http://npm.cbpmgt.com'
+      } 
     },
 
   ]
