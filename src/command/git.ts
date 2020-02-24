@@ -16,7 +16,7 @@ export default {
          git config --global user.email "email@example.com" 
          //使用淘宝npm
          npm config set registry http://registry.npm.taobao.org
-         ssh-keygen -t rsa -C “haiyan.xu.vip@gmail.com”
+         ssh-keygen -t rsa -C “xxx@yyy.com”
          `
         console.log('帮助信息:\n', helpStr)
         const cmdData = [
