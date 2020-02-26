@@ -1,0 +1,1 @@
+npm i vue-grid-layout --registry=https://registry.npm.taobao.org
