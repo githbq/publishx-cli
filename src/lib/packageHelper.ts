@@ -4,6 +4,9 @@ import { cwd } from './consts'
 import { io } from './io'
 export const packageHelper = {
     cwd: null,
+    getProjectName(_cwd?: string) {
+        return (_cwd || this.cwd || cwd ).split('\\').pop()
+    },
     getPath(_cwd?: string) {
         return pathTool.join(_cwd || this.cwd || cwd, 'package.json')
     },
@@ -12,7 +15,7 @@ export const packageHelper = {
         if (await io.exists(packagePath)) {
             return require(packagePath)
         } else {
-            return { scripts: {} }
+            return {name:'demo1', scripts: {} }
         }
     },
     write(jsonObj: object, _cwd?: string) {
