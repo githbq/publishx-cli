@@ -8,7 +8,7 @@ export default {
     /**
      * 启动
      */
-    async start(data) { 
+    async start(data) {
         consoleColor.yellow(`
         // package.json nginxConfig 配置示例
         {
@@ -24,6 +24,7 @@ export default {
             if (!packageJSON.enginxConfig) {
                 consoleColor.green('开始初始化nginxConfig节点')
                 packageJSON.enginxConfig = {
+                    port: '8111',
                     serverRootPath: '/export/local/www/',
                     appName: packageHelper.getProjectName() || packageJSON.name,
                     backendHost: '127.0.0.1'

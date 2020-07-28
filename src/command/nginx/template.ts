@@ -1,10 +1,10 @@
 
 // backendHost: www.abc.com || 127.0.0.1
 // appName project-abc 最好与工程名相同
-export const getTemplateStr = ({ serverRootPath, backendHost, appName }) => `
+export const getTemplateStr = ({ port, serverRootPath, backendHost, appName }) => `
 ##appName-${appName}##
 server {
-    listen 8102;
+    listen ${port};
     server_name $host;
     set $appName "${appName}"; 
     root ${serverRootPath || '/export/local/www/'}$appName;
