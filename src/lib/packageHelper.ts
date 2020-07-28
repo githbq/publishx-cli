@@ -15,7 +15,7 @@ export const packageHelper = {
         if (await io.exists(packagePath)) {
             return require(packagePath)
         } else {
-            return {name:'demo1', scripts: {} }
+            return {name: 'demo1', scripts: {} }
         }
     },
     write(jsonObj: object, _cwd?: string) {

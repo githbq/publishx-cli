@@ -1,4 +1,4 @@
-import { _, packageHelper, exit, exec, getCurrentBranchName, consoleColor, cwd, io } from '../lib'
+import { _, packageHelper, exit, exec, getCurrentBranchName, consoleColor, cwd, io } from '../../lib'
 import * as template from './template';
 import helps from './helps';
 /**
