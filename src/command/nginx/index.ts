@@ -12,6 +12,7 @@ export default {
         consoleColor.yellow(`
         // package.json nginxConfig 配置示例
         {
+            port:'8111',
             serverRootPath: '/export/local/www/',
             appName: packageHelper.getProjectName() || packageJSON.name,
             backendHost: '127.0.0.1'
