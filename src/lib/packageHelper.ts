@@ -5,7 +5,7 @@ import { io } from './io'
 export const packageHelper = {
     cwd: null,
     getProjectName(_cwd?: string) {
-        return (_cwd || this.cwd || cwd).split(/[\/-]/).pop()
+        return (_cwd || this.cwd || cwd).split(/[/\\]/).pop()
     },
     getPath(_cwd?: string) {
         return pathTool.join(_cwd || this.cwd || cwd, 'package.json')
