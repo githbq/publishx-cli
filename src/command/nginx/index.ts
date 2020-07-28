@@ -31,10 +31,10 @@ export default {
                 packageHelper.write(packageJSON)
                 consoleColor.green('nginxConfig节点回写package.json文件完成')
             }
-            consoleColor.green('准备生成项目.nginxconf配置');
+            consoleColor.green('准备生成项目nginx.conf配置');
             const nginxStr = template.getTemplateStr(packageJSON.enginxConfig)
-            await io.write('.nginxconf', nginxStr)
-            consoleColor.green('项目.nginxconf配置已生成');
+            await io.write('nginx.conf', nginxStr)
+            consoleColor.green('项目nginx.conf配置已生成');
         }
         if (data.help) {
             consoleColor.green(helps)
