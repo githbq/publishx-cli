@@ -1,6 +1,6 @@
 ![example](./logo.png)
 
-> 多功能命令 `px` ,简化git操作，一些常用的批量操作!
+> 多功能命令 `px` ,简化git操作，一些常用的批量操作!@2020
 
 ## 安装
 > npm install -g publishx-cli
