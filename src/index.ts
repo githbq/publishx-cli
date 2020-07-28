@@ -3,11 +3,11 @@ import * as  yargs from 'yargs'
 import { exit, consoleColor } from './lib'
 import * as  momentHelper from 'moment-helper'
 export function start() {
-  const commands = requireDir('./command')
+  const commands = requireDir('./command', { recurse: true });
 
   consoleColor.yellow(' 操作时间：' + momentHelper.get() + '\n')
   Object.keys(commands).forEach(key => {
-    const result = commands[key].default
+    const result = (commands[key].index || commands[key]).default
     if (result && !(/^(common|index|_)/.test(key)) && result.start) {
       yargs.command.apply(null, result.command.slice(0, 3).concat(async (argv) => {
         try {

@@ -1,14 +1,14 @@
 {
     "name": "publishx-cli",
-    "version": "1.4.67",
+    "version": "1.4.68",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
     },
     "main": "./build/command",
     "bin": {
-        "publishx": "./bin.js",
-        "px": "./bin.js"
+        "publishx2": "./bin.js",
+        "px2": "./bin.js"
     },
     "scripts": {
         "start": "node run",
@@ -69,5 +69,10 @@
     "engines": {"node": ">=7.6"},
     "author": "hubiqing",
     "repository": "https://github.com/githbq/publishx-cli.git",
-    "license": "MIT"
+    "license": "MIT",
+    "enginxConfig": {
+        "serverRootPath": "/export/local/www/",
+        "appName": "/Users/hubiqing/Documents/github-workspace/publishx-cli",
+        "backendHost": "127.0.0.1"
+    }
 }

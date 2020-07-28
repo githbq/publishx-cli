@@ -8,7 +8,7 @@ export default {
     /**
      * 启动
      */
-    async start(data) {
+    async start(data) { 
         consoleColor.yellow(`
         // package.json nginxConfig 配置示例
         {

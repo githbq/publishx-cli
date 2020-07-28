@@ -15,7 +15,7 @@
                 "--npm",
                 "--c=5"
             ],
-            "cwd": "/Users/biqing.hu/Documents/workspace/node-f-architecture-ada"
+            "cwd": "/Users/hubiqing/Documents/github-workspace/publishx-cli"
         }
         //下面这种方式调试需要先编译 会比较慢,优点是不需要 `ctrl+shift+b` 监听编译ts
         // , {
