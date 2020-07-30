@@ -15,6 +15,8 @@ export default {
     const helpStr = `  
         mac 初始化时需要配置 zsh 配置默认终端、设置别名等，
         为了简化一系列操作用拿命令行的方式自动完成所有操作
+        安装zsh: brew install zsh zsh-completions
+        安装oh-my-zsh: sudo sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
          `
     console.log('帮助信息:\n', helpStr)
     const cmdData = [
