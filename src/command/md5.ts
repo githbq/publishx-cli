@@ -4,7 +4,7 @@ import * as crypto from 'crypto'
 import { _, packageHelper, exit, exec, getCurrentBranchName, consoleColor, cwd, io } from '../lib'
 
 /**
- * 推送远程服务器对应分支的代码
+ * 文件md5比对
  */
 export default {
   /**
