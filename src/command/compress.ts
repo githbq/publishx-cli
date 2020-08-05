@@ -10,7 +10,9 @@ export default {
     async start() {
         consoleColor.time('耗时')
         await io.ensureDir('./dist')
+        consoleColor.green('确认./dist目录', true)
         const zipPath = `./dist/${packageHelper.getProjectName()}.zip`
+        consoleColor.green('索引文件中...')
         const zip = new zipPaths(zipPath,
             { archiveType: 'zip' })
         await new Promise(resolve => {
@@ -31,9 +33,10 @@ export default {
                         consoleColor.error(err)
                         resolve()
                     }
+                    consoleColor.green('压缩文件夹中...')
                     zip.compress((err, bytes) => {
-                        consoleColor.green('压缩包路径:' + zipPath)
-                        consoleColor.green('总共' + Math.floor(bytes / 1024) + 'KB')
+                        consoleColor.green('压缩完成，压缩包路径:' + zipPath, true)
+                        consoleColor.green('共' + (Math.floor(bytes / 1024) || 0) + 'KB', true)
                         resolve()
                     })
                 })

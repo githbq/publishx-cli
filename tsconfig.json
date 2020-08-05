@@ -30,7 +30,8 @@
         "node_modules",
         "build",
         "**/*.test.ts",
-        "temp"
+        "temp",
+        "dist"
     ],
     "compileOnSave": false,
     "buildOnSave": false
