@@ -28,7 +28,7 @@ export default {
                 function (err) {
                     if (err) {
                         consoleColor.error(err)
-                        resolve
+                        resolve()
                     }
                     zip.compress((err, bytes) => {
                         consoleColor.green('压缩包路径:' + zipPath)
