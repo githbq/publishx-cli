@@ -8,6 +8,9 @@ import * as rimraf from 'rimraf'
 export const io = {
   fs,
   pathTool,
+  ensureDir(dir) {
+    return fs.ensureDir(dir)
+  },
   resolveOptions(path: string, options: any = { fromRoot: false, fromCwd: false }) {
     path = pathTool.join.apply(null, [].concat(path))
     path = pathTool.join.apply(null, (options.fromRoot ? [rootPath] : options.fromCwd ? [cwd] : []).concat(path))//考虑多路径处理

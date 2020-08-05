@@ -9,6 +9,7 @@ export default {
      */
     async start() {
         consoleColor.time('耗时')
+        io.ensureDir('./dist')
         const zipPath = `./dist/${packageHelper.getProjectName()}.zip`
         const zip = new zipPaths(zipPath,
             { archiveType: 'zip' })
