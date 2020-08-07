@@ -8,6 +8,9 @@
 ## 命令
 > `publishx` 或者 `px`
 
+## px compress
+- 压缩当前项目，不包含 node_modules .git ，压缩文件在./dist/\[project-name\].zip
+
 ### px start [comment] [-p] [-f] [-v] [--tag]
 - `px start` 用于简化:
     - npm run lint //代码风格校验[自动检测] *失败终止后续操作*
