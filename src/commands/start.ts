@@ -22,7 +22,7 @@ export default {
     if (data.autoVersion) {
       //自动生成版本号
       cmdArr.push({
-        key: 'autoVersion', value: async () => {
+        key: 'auto update package version', value: async () => {
           //以cwd目录执行版本++
           newVersion = await this.upgradeVersion()
         }
