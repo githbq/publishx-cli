@@ -30,8 +30,7 @@ export default {
     }
     const branchName = await getCurrentBranchName()//当前项目分支名
     cmdArr = cmdArr.concat([
-      { key: 'add', value: 'git add .' },
-      { key: 'commit', value: `git commit -am "${data.comment}" ${data.noVerify ? '--no-verify' : ''}` },
+      { key: 'add&commit', value: `git add . && git commit -am "${data.comment}" ${data.noVerify ? '--no-verify' : ''}` },
       { key: 'push', value: `git push origin ${branchName}` }
     ])
 
