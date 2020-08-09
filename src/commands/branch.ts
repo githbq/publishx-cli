@@ -10,6 +10,10 @@ export default {
   async start(data) {
     const arr = [
       {
+        tip: '同步远程',
+        cmdStr: 'git remote update'
+      },
+      {
         tip: '当前分支',
         cmdStr: 'git branch'
       },
@@ -21,7 +25,7 @@ export default {
         tip: '远程分支列表',
         cmdStr: 'git branch -r'
       }
-    ] 
+    ]
     for (let item of arr) {
       try {
         consoleColor.start(item.tip)
@@ -30,7 +34,7 @@ export default {
       catch (e) {
         consoleColor.red(`发生异常:${e.message}`, false)
       }
-    }   
+    }
   },
   command: [
     '显示分支信息',
