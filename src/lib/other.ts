@@ -4,6 +4,7 @@ import * as lodash from 'lodash'
 import * as pathTool from 'path'
 import spawn from 'spawn-helper'
 import * as  prettyMsOrigin from 'pretty-ms'
+import { prompt as promptOrigin } from 'prompt-promise2'
 import { rootPath, cwd } from './consts'
 import { consoleColor } from './consoleColor'
 
@@ -20,7 +21,7 @@ export function stringify(obj, options = {}): string {
  * 读取用户输入
  */
 export async function prompt(describe) {
-  let value = await prompt(describe)
+  let value = await promptOrigin(describe)
   return _.trim(value)
 }
 
