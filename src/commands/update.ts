@@ -12,35 +12,30 @@ export default {
    */
   async start(data) {
     const pathModels = await show.findProjectPaths()
-    _.remove(pathModels, n => !n.isGit) 
+    _.remove(pathModels, n => !n.isGit)
     const tasks = []
     let count = 0
     for (let pathModel of pathModels) {
       tasks.push({
         title: `[${++count}]执行 git fetch origin${data.reset ? ' && git clean -df && git reset --hard origin/[currentBranch]' : ''} @ ${pathModel.path}`,
-        task: () => {
+        task: async () => {
           pathModel.path = io.pathTool.resolve(pathModel.path)
 
-          let currentBranch
-          return getCurrentBranchName({ cwd: pathModel.path })
-            .then((branch) => {
-              currentBranch = branch
-              const cmdStr = ' git fetch origin '
-              return exec(cmdStr, { cwd: pathModel.path, preventDefault: true })
-            })
-            .catch(() => { })
-            .then(() => {
-              if (data.reset) {
-                const cmdStr = `git clean -df && git reset --hard origin/${currentBranch}`
-                return exec(cmdStr, { cwd: pathModel.path, preventDefault: true })
-              }
-            })
-            .catch(() => { })
+          const currentBranch = await getCurrentBranchName({ cwd: pathModel.path })
+
+          const cmdStr = ' git fetch origin '
+          await exec(cmdStr, { cwd: pathModel.path, preventDefault: true })
+
+
+          if (data.reset) {
+            const cmdStr = `git clean -df && git reset --hard origin/${currentBranch}`
+            return exec(cmdStr, { cwd: pathModel.path, preventDefault: true })
+          }
         }
       })
     }
-    const taskManager = new Listr(tasks, { concurrent: true })
-    await taskManager.run() 
+    const taskManager = new Listr(tasks, { concurrent: false })
+    await taskManager.run()
     consoleColor.green('更新完毕\n\n', true)
   },
   command: [
