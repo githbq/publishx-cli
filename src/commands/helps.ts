@@ -28,8 +28,7 @@ export default {
     helps.forEach(n => {
       consoleColor.green(
         `问题描述：${n.description}
-         解决方案：${n.solution}
-        `)
+解决方案：${n.solution}`)
     })
   },
   command: [
