@@ -12,12 +12,17 @@ export default {
     async start(data) {
         if (checkOS.windows) {
             const cmdStr = `explorer.exe "C:\\Windows\\System32\\drivers\\etc"`
-            consoleColor.start(cmdStr) 
+            consoleColor.start(cmdStr)
             consoleColor.green(`window系统hosts配置文件地址为 C:\\Windows\\System32\\drivers\\etc\\hosts`)
             try {
                 await exec(cmdStr)
             }
-            catch (e) { 
+            catch (e) {
+            }
+            try {
+                await exec('code "C:\\Windows\\System32\\drivers\\etc\\hosts"')
+            }
+            catch (e) {
             }
             consoleColor.green(`
             1. 右击hosts文件选择属性，然后点击安全Tab页，查看当前登录用户的权限，显示当前登录用户无hosts文件的写入权限。
