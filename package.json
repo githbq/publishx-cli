@@ -1,6 +1,6 @@
 {
     "name": "publishx-cli",
-    "version": "1.5.7",
+    "version": "1.5.8",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
@@ -41,7 +41,7 @@
         "rimraf": "^2.6.2",
         "rxjs": "^6.5.2",
         "semver": "^5.3.0",
-        "spawn-helper": "^0.0.11",
+        "spawn-helper": "^1.0.0",
         "tslib": "^1.6.1",
         "yargs": "^7.1.0"
     },
@@ -66,9 +66,7 @@
         "git helper",
         "cli"
     ],
-    "engines": {
-        "node": ">=7.6"
-    },
+    "engines": {"node": ">=7.6"},
     "author": "hubiqing",
     "repository": "https://github.com/githbq/publishx-cli.git",
     "license": "MIT",
