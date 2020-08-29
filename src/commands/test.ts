@@ -1,7 +1,8 @@
-import { _, requireCwd, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
+import { _, requireCwd, prompt, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
 import { Observable } from 'rxjs'
 import * as  delay from 'delay'
 import * as Listr from 'listr'
+import * as inquirer from 'inquirer'
 /**
  * 测试用
  */
@@ -10,31 +11,8 @@ export default {
      * 启动
      */
     async start(data) {
-
-        const listtr = new Listr([
-            {
-                title: 'Checking git status',
-                task: () => {
-                    return new Observable(observer => {
-                        observer.next('foo')
-
-                        delay(2000)
-                            .then(() => {
-                                observer.next(`bar`)
-                                return delay(2000)
-                            })
-                            .then(() => {
-                                observer.complete()
-                            })
-                    })
-                }
-            },
-            {
-                title: 'Checking remote history',
-                task: () => delay(2000)
-            }
-        ], { concurrent: true })
-        await listtr.run()
+          const res = await prompt('请输入姓名', '123')
+        console.log('xxx', res)
     },
     command: [
         '测试用不要使用',

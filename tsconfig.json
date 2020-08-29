@@ -13,12 +13,8 @@
         "importHelpers": true,
         "strictNullChecks": false,
         "allowUnreachableCode": true,
-        "lib": [
-            "es2017"
-        ],
-        "typeRoots": [
-            "node_modules/@types"
-        ],
+        "lib": ["es2017"],
+        "typeRoots": ["node_modules/@types"],
         "types": [
             "bluebird",
             "cli-color",
@@ -30,9 +26,7 @@
         "outDir": "./build",
         "rootDir": "./src"
     },
-    "include": [
-        "./src"
-    ], 
+    "include": ["./src"],
     "compileOnSave": false,
     "buildOnSave": false
 }
