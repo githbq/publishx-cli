@@ -9,7 +9,7 @@
         "alwaysStrict": true,
         "sourceMap": true,
         "noEmit": false,
-        "noEmitHelpers": true,
+        "noEmitHelpers": false,
         "importHelpers": true,
         "strictNullChecks": false,
         "allowUnreachableCode": true,
