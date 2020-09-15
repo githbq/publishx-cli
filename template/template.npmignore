@@ -43,3 +43,5 @@ src
 .editorconfig
 package-lock.json
 .awcache
+temp
+temp.*

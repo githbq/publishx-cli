@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
-        "target": "es2016",
+        "target": "es2017",
         "module": "commonjs",
         "moduleResolution": "node",
+        "declaration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
@@ -13,8 +14,13 @@
         "importHelpers": true,
         "strictNullChecks": false,
         "allowUnreachableCode": true,
-        "lib": ["es2017"],
-        "typeRoots": ["node_modules/@types"],
+        "newLine": "LF",
+        "lib": [
+            "es2017"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ],
         "types": [
             "bluebird",
             "cli-color",
@@ -26,7 +32,12 @@
         "outDir": "./build",
         "rootDir": "./src"
     },
-    "include": ["./src"],
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "**/node_modules/**/*"
+    ],
     "compileOnSave": false,
     "buildOnSave": false
 }
