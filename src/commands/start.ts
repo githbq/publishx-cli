@@ -16,7 +16,8 @@ export default {
     }
     if (isTs) {
       //ts检测
-      cmdArr.push({ key: 'tsc', value: 'npm run tsc' })
+      if (packageJSON.scripts['tsc'])
+        cmdArr.push({ key: 'tsc', value: 'npm run tsc' })
     }
     let newVersion = packageJSON.version || '1.0.0'
     if (data.autoVersion) {
@@ -30,7 +31,7 @@ export default {
     }
     const branchName = await getCurrentBranchName()//当前项目分支名
     cmdArr = cmdArr.concat([
-      { key: 'add&commit', value: `git add . && git commit -am "${data.comment}" ${data.noVerify ? '--no-verify' : ''}` },
+      { key: 'add & commit', value: `git add . && git commit -am "${data.comment}" ${data.noVerify ? '--no-verify' : ''}` },
       { key: 'push', value: `git push origin ${branchName}` }
     ])
 
