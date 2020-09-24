@@ -11,10 +11,9 @@ export default {
     const patternString = '**/node_modules **/package-lock.json **/yarn.lock'
     const patterns = patternString.split(' ')
 
-    consoleColor.start('rimraf ' + patternString) 
+    consoleColor.start('rimraf ' + patternString)
     for (let pattern of patterns) {
       if (pattern) {
-        const cmdStr = `rimraf ${pattern}`
 
         try {
           await io.rimraf(pattern)
@@ -23,11 +22,17 @@ export default {
           consoleColor.red(`发生异常:${e.message}`, false)
         }
       }
-    } 
+    }
   },
   command: [
     'rimraf **/node_modules',
     {
+      deleteLockFile: {
+        alias: 'd',
+        describe: '删除lock文件',
+        boolean: true,
+        default: false
+      }
     }
   ]
 }

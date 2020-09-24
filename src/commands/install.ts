@@ -10,13 +10,17 @@ export default {
     /**
      * 启动
      */
-    async start(data) { 
+    async start(data) {
         /**
          * 查找所有nodejs项目
          */
-        const clearCMDStr = 'px clear'
-        await exec(clearCMDStr, { cwd }).catch(error => { })
+        consoleColor.start('rimraf **/node_modules')
 
+        await Promise.all(
+            ['**/node_modules'].map(
+                pattern => io.rimraf(pattern)
+            )
+        )
 
         const pathModels = await show.findProjectPaths()
         let tasks = []
@@ -70,10 +74,10 @@ export default {
         }
 
         const taskManager = new Listr(tasks)
-        await taskManager.run() 
+        await taskManager.run()
         consoleColor.green(`${tool} install 完毕\n\n`, true)
     },
-    command: [ 
+    command: [
         '默认执行 yarn install',
         {
             npm: {
