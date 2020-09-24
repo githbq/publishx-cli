@@ -11,11 +11,7 @@ export default {
      * 启动
      */
     async start(data) {
-        /**
-         * 查找所有nodejs项目
-         */
         consoleColor.start('rimraf **/node_modules')
-
         await Promise.all(
             ['**/node_modules'].map(
                 pattern => io.rimraf(pattern)
