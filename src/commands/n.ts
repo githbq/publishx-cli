@@ -9,7 +9,7 @@ export default {
      */
     async start(data) {
         const cmds = [
-            `N_NODE_MIRROR=https://npm.taobao.org/mirrors/node n latest`
+            `N_NODE_MIRROR=https://npm.taobao.org/mirrors/node n ${data.version || 'latest'}`
         ]
         for (let cmdStr of cmds) {
             consoleColor.start(cmdStr)
@@ -17,7 +17,8 @@ export default {
         }
     },
     command: [
-        'wsl init',
+        '<version>',
+        'n install with taobao registry',
         {
         }
     ]
