@@ -39,7 +39,7 @@ Client does not support authentication protocol requested by server; consider up
 
 ``` 
 
-docker exec -it mysql-1 bash
+docker exec -it mysql-1 /bash/bin
 ```
 
 2. mysql-1容器内进入 mysql
