@@ -64,8 +64,9 @@ mysql> select user,host,plugin from user where user='root';
 mysql> alter user 'root'@'%' identified by 'password' password expire never;
 // 修改用户密码类型，原样复制
 mysql> alter user 'root'@'localhost' identified by 'password' password expire never;
-// 修改用户密码
-alter user 'root'@'%' identified with mysql_native_password by '111111'; //111111是自己新修改的密码。
+// 修改用户密码，111111是自己新修改的密码。
+alter user 'root'@'%' identified with mysql_native_password by '111111'; 
+alter user 'root'@'%' identified with mysql_native_password by '111111';
 // 刷新用户权限
 mysql> flush privileges;
 // 再次检查
