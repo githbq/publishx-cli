@@ -75,3 +75,14 @@ select user,host,plugin from user where user='root';
 ```
 
 4. 在终端工具 `navcat for mysql` 验证，注意密码一致性
+
+# redis 
+
+## 安装 
+
+``` 
+
+docker pull redis 
+```
+
+docker run --name redis -p 6379:6379 -d --restart=always redis:latest redis-server --appendonly yes --requirepass "111111"
