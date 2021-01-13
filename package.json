@@ -1,6 +1,6 @@
 {
     "name": "publishx-cli",
-    "version": "1.5.14",
+    "version": "1.5.15",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
@@ -19,9 +19,9 @@
         "lint": "tslint ./src/**/*.ts --fix"
     },
     "dependencies": {
+        "cli-color": "^1.4.0",
         "axios": "^0.18.0",
         "bluebird": "^3.5.4",
-        "cli-color": "^1.2.0",
         "debug": "^2.6.6",
         "delay": "^2.0.0",
         "download": "^6.2.5",
@@ -42,7 +42,7 @@
         "rxjs": "^6.5.2",
         "semver": "^5.3.0",
         "spawn-helper": "^1.0.0",
-        "tslib": "^1.6.1",
+        "tslib": "^1.14.1",
         "yargs": "^7.1.0"
     },
     "devDependencies": {
@@ -52,9 +52,9 @@
         "@types/lodash": "^4.14.123",
         "@types/node": "^6.0.48",
         "@types/semver": "^5.3.31",
-        "ts-node": "^3.0.2",
+        "ts-node": "^3.3.0",
         "tslint": "^5.2.0",
-        "typescript": "^3.4.5"
+        "typescript": "^4.1.3"
     },
     "keywords": [
         "typescript",

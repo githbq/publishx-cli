@@ -35,6 +35,10 @@ export const io = {
     path = this.resolveOptions(path, options)
     return fs.existsAsync(path)
   },
+  existsSync(path, options: any = { fromRoot: false, fromCwd: false }) {
+    path = this.resolveOptions(path, options)
+    return fs.existsSync(path)
+  },
   /**
    *
    * @param pattern 文件特征字符串
