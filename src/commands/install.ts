@@ -23,7 +23,6 @@ export default {
             let result = false
             const keyVersions = Object.keys(n.deps)
                 .map(key => ({ key, version: n.deps[key] }))
-            console.log('level', level)
             if (level === 0) {
                 result = !keyVersions
                     .some(item => item.version.indexOf(fileVersionToken) !== -1)
@@ -38,11 +37,9 @@ export default {
             }
             return !result
         })
-        console.log('remainingPackageModels', remainingPackageModels.length)
 
         if (remainingPackageModels.length) {
             const preDepedPackageNames = depedPackageNames.concat(levelPackageModels.map(n => n.packageJSON.name))
-            console.log('preDepedPackageNames', preDepedPackageNames)
             this.computLevel(remainingPackageModels, preDepedPackageNames, level + 1)
         }
     },
@@ -56,7 +53,7 @@ export default {
             cmdStr = `${tool} install  --no-save --no-shrinkwrap --no-package-lock`
         }
         const title = `${tool} install @ ${path}`
-        return { title, task: exec(cmdStr, { cwd: path, preventDefault: true }).catch(error => { }) }
+        return { title, task: () => exec(cmdStr, { cwd: path, preventDefault: true }).catch(error => { }) }
     },
     tool: '',
     /**
@@ -83,7 +80,7 @@ export default {
             tasks.push({
                 title: `安装 level${level} 级工程`,
                 task: () => {
-                    return levelPackageModels.map(n => this.makeTask(n.path))
+                    return new Listr([...levelPackageModels.map(n => this.makeTask(n.path))])
                 }
             })
         })
