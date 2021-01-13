@@ -18,6 +18,14 @@ export const packageHelper = {
             return { name: 'demo1', scripts: {} }
         }
     },
+    getSync(_cwd?: string) {
+        const packagePath = this.getPath(_cwd)
+        if (io.existsSync(packagePath)) {
+            return require(packagePath)
+        } else {
+            return { name: 'demo1', scripts: {} }
+        }
+    },
     write(jsonObj: object, _cwd?: string) {
         return io.write(this.getPath(_cwd), jsonObj)
     },

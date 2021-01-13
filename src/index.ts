@@ -2,6 +2,7 @@ import * as requireDir from 'require-dir'
 import * as  yargs from 'yargs'
 import { exit, consoleColor } from './lib'
 import * as  momentHelper from 'moment-helper'
+
 export function start() {
   const commands = requireDir('./commands', { recurse: true })
 

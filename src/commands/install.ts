@@ -1,75 +1,96 @@
 import { _, _Promise, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
 import show from './show'
 import * as Listr from 'listr'
+
+const fileVersionToken = 'file:'
 /**
  * 安装node项目库
  */
 export default {
+    async removeNodeModules() {
+        try {
+            consoleColor.start('rimraf **/node_modules')
+            await Promise.all(
+                ['**/node_modules'].map(
+                    pattern => io.rimraf(pattern)
+                )
+            )
+        } catch (e) { }
+    },
+    computLevel(packageModels, depedPackageNames = [], level = 0) {
+        const levelPackageModels = []
+        const remainingPackageModels = packageModels.filter(n => {
+            let result = false
+            const keyVersions = Object.keys(n.deps)
+                .map(key => ({ key, version: n.deps[key] }))
+            console.log('level', level)
+            if (level === 0) {
+                result = !keyVersions
+                    .some(item => item.version.indexOf(fileVersionToken) !== -1)
+            } else {
+                result = keyVersions
+                    .every(({ key }) => depedPackageNames.indexOf(key) !== -1)
+            }
+
+            if (result) {
+                n.level = level
+                levelPackageModels.push(n)
+            }
+            return !result
+        })
+        console.log('remainingPackageModels', remainingPackageModels.length)
+
+        if (remainingPackageModels.length) {
+            const preDepedPackageNames = depedPackageNames.concat(levelPackageModels.map(n => n.packageJSON.name))
+            console.log('preDepedPackageNames', preDepedPackageNames)
+            this.computLevel(remainingPackageModels, preDepedPackageNames, level + 1)
+        }
+    },
+    makeTask(path) {
+        let tool = this.tool
+        let cmdStr = ''
+        if (tool === 'yarn') {
+            cmdStr = `${tool} install --no-save --no-lockfile`
+        }
+        else {
+            cmdStr = `${tool} install  --no-save --no-shrinkwrap --no-package-lock`
+        }
+        const title = `${tool} install @ ${path}`
+        return { title, task: exec(cmdStr, { cwd: path, preventDefault: true }).catch(error => { }) }
+    },
+    tool: '',
     /**
      * 启动
      */
     async start(data) {
-        consoleColor.start('rimraf **/node_modules')
-        await Promise.all(
-            ['**/node_modules'].map(
-                pattern => io.rimraf(pattern)
-            )
-        )
+        const tasks = []
+        await this.removeNodeModules()
+        this.tool = data.yarn ? 'yarn' : 'npm'
 
         const pathModels = await show.findProjectPaths()
-        let tasks = []
-        let tool = data.yarn ? 'yarn' : 'npm'
-        const simpleProjects = []
-        const complexProjects = []
-        for (let pathModel of pathModels) {
 
-            const packageJson = await packageHelper.get(io.pathTool.resolve(pathModel.path))
-            const { dependencies, devDependencies } = packageJson
-            const packages = { ...dependencies, ...devDependencies }
-
-            const isComplex = Object.values(packages).some((url: String) => url.trim().indexOf('file:') === 0)
-            let cmdStr = ''
-            if (data.yarn) {
-                cmdStr = `${tool} install --no-save --no-lockfile`
-            }
-            else {
-                cmdStr = `${tool} install  --no-save --no-shrinkwrap --no-package-lock`
-            }
-            const title = `${tool} install @ ${pathModel.path}`
-            const target = isComplex ? complexProjects : simpleProjects
-            target.push({ ...pathModel, cmdStr, title })
-        }
-
-        const simpleTasks = new Listr([
-            ...simpleProjects.map(n => {
-                return { title: n.title, task: () => exec(n.cmdStr, { cwd: n.path, preventDefault: true }).catch(error => { }) }
-            })
-        ], { concurrent: data.concurrent || 2 })
-        const complexTasks = new Listr([
-            ...complexProjects.map(n => {
-                return { title: n.title, task: () => exec(n.cmdStr, { cwd: n.path, preventDefault: true }).catch(error => { }) }
-            })
-        ])
-        if (simpleProjects.length > 0) {
+        let packageModels = pathModels.map(n => ({ path: n.path, packageJSON: packageHelper.getSync(io.pathTool.resolve(n.path)), deps: null, level: 0 }))
+        packageModels.forEach(n => n.deps = { ...n.packageJSON.devDependencies, ...n.packageJSON.dependencies })
+        // 计算出依赖层级 
+        this.computLevel(packageModels)
+        const packageModelDic = {}
+        packageModels.forEach(n => {
+            packageModelDic[n.level] = packageModelDic[n.level] || []
+            packageModelDic[n.level].push(n)
+        })
+        Object.keys(packageModelDic).forEach(level => {
+            const levelPackageModels = packageModelDic[level]
             tasks.push({
-                title: '安装普通工程',
+                title: `安装 level${level} 级工程`,
                 task: () => {
-                    return simpleTasks
+                    return levelPackageModels.map(n => this.makeTask(n.path))
                 }
             })
-        }
-        if (complexProjects.length > 0) {
-            tasks.push({
-                title: '安装有文件级依赖工程',
-                task: () => {
-                    return complexTasks
-                }
-            })
-        }
+        })
 
         const taskManager = new Listr(tasks)
         await taskManager.run()
-        consoleColor.green(`${tool} install 完毕\n\n`, true)
+        consoleColor.green(`${this.tool} install 完毕\n\n`, true)
     },
     command: [
         '默认执行 yarn install',
@@ -79,6 +100,12 @@ export default {
                 describe: '使用npm安装库',
                 boolean: true,
                 default: false
+            },
+            yarn: {
+                alias: 'n',
+                describe: '使用yarn安装库',
+                boolean: true,
+                default: true
             },
             concurrent: {
                 alias: 'c',

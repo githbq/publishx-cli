@@ -1,6 +1,8 @@
- require('ts-node/register')
+process.chdir('/Users/hubiqing/Documents/github-workspace/test-project')
 
- require('./src')
+require('ts-node/register')
+
+require('./src')
      //tsconfig 帮助文档地址
      //https://zhongsp.gitbooks.io/typescript-handbook/content/doc/handbook/tsconfig.json.html
      //https://tslang.cn/docs/handbook/compiler-options.html
