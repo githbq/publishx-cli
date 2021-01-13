@@ -99,7 +99,7 @@ export default {
                 default: false
             },
             yarn: {
-                alias: 'n',
+                alias: 'y',
                 describe: '使用yarn安装库',
                 boolean: true,
                 default: true
