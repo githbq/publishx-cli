@@ -1,4 +1,4 @@
-process.chdir('/Users/hubiqing/Documents/github-workspace/test-project')
+// process.chdir('/Users/hubiqing/Documents/github-workspace/test-project')
 
 require('ts-node/register')
 
