@@ -42,12 +42,12 @@ export default {
             fse.ensureFile(zshConfigPath)
           ])
           let zshConfig = await fse.readFile(zshConfigPath).toString()
-          if (zshConfig.indexOf('github-workspace1') === -1) {
+          if (zshConfig.indexOf('github-workspace') === -1) {
             zshConfig += `
-# my alias
+# start-my alias
 alias wksp="cd ~/Documents/workspace"
 alias gwksp="cd ~/Documents/github-workspace"
-
+# end-my alias
             `
           }
           await fse.outputFile(zshConfigPath, zshConfig)
