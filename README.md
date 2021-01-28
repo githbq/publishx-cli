@@ -43,8 +43,8 @@
 -  `-r` remove , yarn add|remove --dev @types/xxx
 - `-l` lib,移除types库时,连同库一起移除
 
-### px install
-- 对查找出来的所有项目执行 yarn
+### px install [--yarn?]
+- 对查找出来的所有项目执行 默认是 npm install 
 
 ### px ignore [-n]
 - 在当前目录生成 .gitignore

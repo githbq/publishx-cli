@@ -90,7 +90,7 @@ export default {
         consoleColor.green(`${this.tool} install 完毕\n\n`, true)
     },
     command: [
-        '默认执行 yarn install',
+        '默认执行 npm install',
         {
             npm: {
                 alias: 'n',
