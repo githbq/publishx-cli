@@ -10,6 +10,12 @@ export default {
   async start(data) {
     let cmdArr = []
     const packageJSON = await packageHelper.get()
+    if (packageJSON.publishConfig) {
+      consoleColor.green(`
+    请确保已在相应的 registry 登录:
+    npm adduser --registry=${packageJSON.publishConfig.registry}
+    `)
+    }
     const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
     if (packageJSON.scripts['lint'] && !packageJSON['pre-commit'] && !data.noVerify) {
       cmdArr.push({ key: 'lint', value: 'npm run lint' })
