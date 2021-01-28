@@ -102,7 +102,7 @@ export default {
                 alias: 'y',
                 describe: '使用yarn安装库',
                 boolean: true,
-                default: true
+                default: false
             },
             concurrent: {
                 alias: 'c',
