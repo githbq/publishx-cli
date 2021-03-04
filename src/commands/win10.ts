@@ -26,5 +26,8 @@ export default {
         }
     },
     command: [
+        'win10处理',
+        {
+        }
     ]
 }
