@@ -1,4 +1,5 @@
-import { _, packageHelper, exit, exec, getCurrentBranchName, consoleColor, cwd, io } from '../lib'
+import { _, packageHelper, exit, exec, getCurrentBranchName, consoleColor, cwd, io, projectHelper } from '../lib'
+import * as pathTool from 'path'
 import show from './show'
 
 /**
@@ -9,23 +10,33 @@ export default {
    * 启动
    */
   async start({ name, branch }) {
-    const pathModels = await show.findProjectPaths()
-
-    const promises = pathModels.map(async (n) => {
-      if (!n.isGit) {
-        consoleColor.red(`工程:${n.path} 非git工程，跳过`)
-        return Promise.resolve()
-      }
-      const cmdStr = `git remote update && git checkout ${branch ? '-b' : ''} ${name}`
-      consoleColor.start(cmdStr)
+    const paths = await projectHelper.findGitProjects(cwd)
+    consoleColor.start(`共计${paths.length}个工程`) 
+    let count = 0
+    for (let path of paths) {
+      count++
+      consoleColor.start(`当前[${count}] @ ${path},剩余${paths.length - count}个工程`)
       try {
-        await exec(cmdStr, { cwd: n.path })
+        const cmdStr = `git remote update`
+        consoleColor.start(cmdStr)
+        consoleColor.start(`${cmdStr} @ ${path}`)
+        await exec(cmdStr, { cwd: path })
+      }
+      catch (e) {
+      }
+
+      try {
+        const cmdStr = `git checkout ${branch ? '-b' : ''} ${name}`
+        consoleColor.start(cmdStr)
+        consoleColor.start(`checkout @ ${path}`)
+        await exec(cmdStr, { cwd: path })
       }
       catch (e) {
         consoleColor.red(`发生异常:${e.message}`, false)
       }
-    })
-    await Promise.all(promises)
+
+    }
+
 
   }, command:
     [
