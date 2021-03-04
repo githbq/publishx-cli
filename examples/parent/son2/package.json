@@ -1,0 +1,15 @@
+{
+  "name": "son2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "son1": "file:../son1"
+  },
+  "author": "",
+  "license": "ISC"
+}
