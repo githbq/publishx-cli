@@ -18,7 +18,7 @@ export default {
             )
         } catch (e) { }
     },
-    computLevel(packageModels, depeneddPackageNames = [], level = 0) {
+    computLevel(packageModels, dependedPackageNames = [], level = 0) {
         const levelPackageModels = []
         const remainingPackageModels = packageModels.filter(n => {
             let result = false
@@ -30,7 +30,7 @@ export default {
             } else {
                 result = keyVersions
                     .filter(kv => kv.key.indexOf(fileVersionToken) !== -1)
-                    .every(({ key }) => depeneddPackageNames.indexOf(key) !== -1)
+                    .every(({ key }) => dependedPackageNames.indexOf(key) !== -1)
             }
             if (result) {
                 n.level = level
@@ -39,7 +39,7 @@ export default {
             return !result
         })
         if (remainingPackageModels.length) {
-            const preDependedPackageNames = depeneddPackageNames.concat(levelPackageModels.map(n => n.packageJSON.name))
+            const preDependedPackageNames = dependedPackageNames.concat(levelPackageModels.map(n => n.packageJSON.name))
             this.computLevel(remainingPackageModels, preDependedPackageNames, level + 1)
         }
     },
