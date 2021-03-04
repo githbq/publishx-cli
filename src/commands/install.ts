@@ -78,7 +78,7 @@ export default {
         Object.keys(packageModelDic).forEach(level => {
             const levelPackageModels = packageModelDic[level]
             tasks.push({
-                title: `安装 level${level} 级工程 by ${this.tool}`,
+                title: `安装 level:${level} 级工程 by ${this.tool}`,
                 task: () => {
                     return new Listr([...levelPackageModels.map(n => this.makeTask(n.path))])
                 }
