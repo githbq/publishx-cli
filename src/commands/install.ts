@@ -1,6 +1,7 @@
 import { _, _Promise, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
 import show from './show'
 import * as Listr from 'listr'
+import { keyBy } from 'lodash'
 
 const fileVersionToken = 'file:'
 /**
@@ -17,7 +18,7 @@ export default {
             )
         } catch (e) { }
     },
-    computLevel(packageModels, depedPackageNames = [], level = 0) {
+    computLevel(packageModels, depeneddPackageNames = [], level = 0) {
         const levelPackageModels = []
         const remainingPackageModels = packageModels.filter(n => {
             let result = false
@@ -28,19 +29,18 @@ export default {
                     .some(item => item.version.indexOf(fileVersionToken) !== -1)
             } else {
                 result = keyVersions
-                    .every(({ key }) => depedPackageNames.indexOf(key) !== -1)
+                    .filter(kv => kv.key.indexOf(fileVersionToken) !== -1)
+                    .every(({ key }) => depeneddPackageNames.indexOf(key) !== -1)
             }
-
             if (result) {
                 n.level = level
                 levelPackageModels.push(n)
             }
             return !result
         })
-
         if (remainingPackageModels.length) {
-            const preDepedPackageNames = depedPackageNames.concat(levelPackageModels.map(n => n.packageJSON.name))
-            this.computLevel(remainingPackageModels, preDepedPackageNames, level + 1)
+            const preDependedPackageNames = depeneddPackageNames.concat(levelPackageModels.map(n => n.packageJSON.name))
+            this.computLevel(remainingPackageModels, preDependedPackageNames, level + 1)
         }
     },
     makeTask(path) {
@@ -78,7 +78,7 @@ export default {
         Object.keys(packageModelDic).forEach(level => {
             const levelPackageModels = packageModelDic[level]
             tasks.push({
-                title: `安装 level${level} 级工程`,
+                title: `安装 level${level} 级工程 by ${this.tool}`,
                 task: () => {
                     return new Listr([...levelPackageModels.map(n => this.makeTask(n.path))])
                 }
