@@ -27,7 +27,7 @@ export default {
   async getExistsTypes() {
     const packageJson = await packageHelper.get()
     const allDeps = { ...packageJson.dependencies, ...packageJson.devDependencies }
-    let types = Object.keys(allDeps).filter((n) => /^@types/.test(n)).map(n => n.replace('@types/', ''))
+    let types = Object.keys(allDeps).filter((n) => /^@types\//.test(n)).map(n => n.replace('@types/', ''))
     types = _.sortBy(types, n => n)
     return types
   },
