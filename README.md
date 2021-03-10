@@ -114,6 +114,9 @@
 6. 安装全局命令 cnpm: npm i -g cnpm
 7. 初始化 git 默认行为:px git init
 
+### px chmod-pem
+- 跨平台支持对 `.pem` 格式文件进行降权，以支持快捷 ssh 命令方式登录
+
 ### px sass
 - 操作系统设置 npm|yarn config set sass-binary-site 为 http://npm.taobao.org/mirrors/node-sass 解决node-sass安装缓慢问题
 ## 查看帮助
