@@ -1,6 +1,6 @@
 {
     "name": "publishx-cli",
-    "version": "1.6.13",
+    "version": "1.6.14",
     "description": "publishx-cli 方便提交git库的命令 多功能合一命令，辅助多项目开发",
     "publishConfig": {
         "registry": "https://registry.npmjs.org"

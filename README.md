@@ -116,6 +116,7 @@
 
 ### px chmod-pem
 - 跨平台支持对当前目录下 `**/*.pem` 格式文件进行降权，以支持快捷 ssh 命令方式登录
+- `execa.command(`ssh -tt -i ${pemPath} root@111.111.11.11 -p 88888`, { stdio: 'inherit' })`
 
 ### px sass
 - 操作系统设置 npm|yarn config set sass-binary-site 为 http://npm.taobao.org/mirrors/node-sass 解决node-sass安装缓慢问题
