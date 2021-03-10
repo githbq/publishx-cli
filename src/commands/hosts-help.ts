@@ -1,7 +1,4 @@
 import { _, requireCwd, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper, checkOS } from '../lib'
-import { Observable } from 'rxjs'
-import * as  delay from 'delay'
-import * as Listr from 'listr'
 /**
  * win10 hosts 配权限
  */
