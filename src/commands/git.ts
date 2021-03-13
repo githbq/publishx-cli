@@ -21,6 +21,18 @@ export default {
         console.log('帮助信息:\n', helpStr)
         const cmdData = [
             {
+                desc: 'git config --global --unset https.proxy',
+                cmdStr: 'git config --global --unset https.proxy',
+            },
+            {
+                desc: 'git config --global --unset http.proxy',
+                cmdStr: 'git config --global --unset http.proxy',
+            },
+            {
+                desc: `git config --global http.sslVerify "false"`,
+                cmdStr: 'git config --global http.sslVerify "false"'
+            },
+            {
                 desc: `git config --global http.sslVerify "false"`,
                 cmdStr: 'git config --global http.sslVerify "false"'
             },
