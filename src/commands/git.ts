@@ -21,6 +21,10 @@ export default {
         console.log('帮助信息:\n', helpStr)
         const cmdData = [
             {
+                desc: `git config --global http.sslVerify "false"`,
+                cmdStr: 'git config --global http.sslVerify "false"'
+            },
+            {
                 desc: 'git敏感大小写  默认是忽略大小写的 会不认识文件名的大小写 所以需要设为false',
                 cmdStr: `git config core.ignorecase false`
             },
