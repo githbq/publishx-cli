@@ -34,21 +34,15 @@ export default {
         spinner.ok(`目录${cwd}分析结束`)
         let count = 1
         const projects: Array<PathModel> = []
-        if (!all) {
-            //将路径转换到上一级 也就是文件夹
-            paths = paths.map(n => io.pathTool.dirname(n))
-            for (let projectPath of paths) {
-                const isGit = await io.exists(io.pathTool.join(projectPath, '.git'))
-                let pathModel = { path: projectPath, isGit }
-                projects.push(pathModel)
-                consoleColor.green(`[${count++}]` + projectPath.replace(/\\/g, '/') + (!isGit ? '  非 git 项目!' : ''), true)
-            }
-        } else {
-            for (let filePath of paths) {
-                let pathModel = { path: filePath, isGit: false, isFilePath: true }
-                projects.push(pathModel)
-            }
+        //将路径转换到上一级 也就是文件夹
+        paths = paths.map(n => io.pathTool.dirname(n))
+        for (let projectPath of paths) {
+            const isGit = await io.exists(io.pathTool.join(projectPath, '.git'))
+            let pathModel = { path: projectPath, isGit }
+            projects.push(pathModel)
+            consoleColor.green(`[${count++}]` + projectPath.replace(/\\/g, '/') + (!isGit ? '  非 git 项目!' : ''), true)
         }
+
         consoleColor.white(`查找到${paths.length}个目标`)
         return projects
     },
@@ -58,7 +52,7 @@ export default {
             all: {
                 alias: ['a'],
                 boolean: true,
-                default: false,
+                default: true,
                 describe: '是否查找所有工程，即使没有package.json文件'
             },
         }
