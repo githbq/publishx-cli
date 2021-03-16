@@ -21,20 +21,20 @@ export default {
      */
     async start(data) {
 
-        await this.findProjectPaths()
+        await this.findProjectPaths(data.all)
     },
-    async findProjectPaths(allFiles: boolean = false): Promise<Array<PathModel>> {
-        const spinner = consoleColor.showSpiner(`正在分析目录:${cwd}`) 
+    async findProjectPaths(all: boolean = false): Promise<Array<PathModel>> {
+        const spinner = consoleColor.showSpiner(`正在分析目录:${cwd}`)
         let paths: Array<string> = null
-        if (allFiles) {
-            paths = await io.globby(['**/*', '!**/{node_modules,workspace,git-workspace}/**/*'], { dot: true, nodir: true })
+        if (all) {
+            paths = await io.globby(['**/.git', '!**/{.git,node_modules,workspace,git-workspace}/**/*'], { dot: false, nodir: false })
         } else {
             paths = await io.globby(['**/package.json', '!**/{__test__,__mocks__,node_modules,types,example,examples,build,temp,template,templates,dist}/**'], { dot: false })
         }
         spinner.ok(`目录${cwd}分析结束`)
         let count = 1
         const projects: Array<PathModel> = []
-        if (!allFiles) {
+        if (!all) {
             //将路径转换到上一级 也就是文件夹
             paths = paths.map(n => io.pathTool.dirname(n))
             for (let projectPath of paths) {
@@ -49,13 +49,18 @@ export default {
                 projects.push(pathModel)
             }
         }
-        consoleColor.white(`查找到${paths.length}个目标`) 
+        consoleColor.white(`查找到${paths.length}个目标`)
         return projects
     },
     command: [
         '显示当前项目下的所有项目',
         {
-
+            all: {
+                alias: ['a'],
+                boolean: true,
+                default: false,
+                describe: '是否查找所有工程，即使没有package.json文件'
+            },
         }
     ]
 }
