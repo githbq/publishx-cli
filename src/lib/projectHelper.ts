@@ -12,7 +12,7 @@ export const projectHelper = {
         return fs.pathExists(pathTool.join(path, 'package.json'))
     },
     findGitProjects: async (cwd, patterns = [], globOptions = {}) => {
-        let paths = await globby(['**/.git/', ignorePattern, ...[].concat(patterns)], { dot: false, onlyDirectories: true, cwd, ...globOptions })
+        let paths = await globby(['**/.git/', ignorePattern, ...[].concat(patterns)], { dot: true, onlyDirectories: true, cwd, ...globOptions })
         paths = paths.map(path => pathTool.dirname(path))
         return paths
     },
