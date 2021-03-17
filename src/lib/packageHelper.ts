@@ -1,14 +1,14 @@
 import * as semver from 'semver'
 import * as pathTool from 'path'
-import { cwd } from './consts'
+import { rootPath } from './consts'
 import { io } from './io'
 export const packageHelper = {
     cwd: null,
     getProjectName(_cwd?: string) {
-        return (_cwd || this.cwd || cwd).split(/[/\\]/).pop()
+        return (_cwd || this.cwd || rootPath).split(/[/\\]/).pop()
     },
     getPath(_cwd?: string) {
-        return pathTool.join(_cwd || this.cwd || cwd, 'package.json')
+        return pathTool.join(_cwd || this.cwd || rootPath, 'package.json')
     },
     async get(_cwd?: string) {
         const packagePath = this.getPath(_cwd)
@@ -31,7 +31,7 @@ export const packageHelper = {
     },
     //获取version
     getVersion(currentVersion?, _cwd?: string) {
-        let version = currentVersion || this.get(_cwd).version
+        let version = currentVersion || this.get(_cwd || rootPath).version
         if (!semver.valid(version)) {
             throw new Error('Invalid version number found in package.json, please make sure it is valid')
         }

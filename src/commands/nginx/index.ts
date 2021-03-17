@@ -14,7 +14,7 @@ export default {
         {
             port:'8111',
             serverRootPath: '/export/local/www/',
-            appName: packageHelper.getProjectName() || packageJSON.name,
+            appName: packageHelper.getProjectName(cwd) || packageJSON.name,
             backendHost: '127.0.0.1'
         }
         `)
@@ -27,7 +27,7 @@ export default {
                 packageJSON.enginxConfig = {
                     port: '8111',
                     serverRootPath: '/export/local/www/',
-                    appName: packageHelper.getProjectName() || packageJSON.name,
+                    appName: packageHelper.getProjectName(cwd) || packageJSON.name,
                     backendHost: '127.0.0.1'
                 }
                 packageHelper.write(packageJSON)

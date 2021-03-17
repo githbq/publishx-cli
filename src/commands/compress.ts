@@ -8,7 +8,7 @@ export default {
      * 启动
      */
     async start({ name }) {
-        const fileName = (name || packageHelper.getProjectName()).replace(/\.zip$/, '')
+        const fileName = (name || packageHelper.getProjectName(cwd)).replace(/\.zip$/, '')
         const zipPath = `./dist/${fileName}.zip`
         const globbyCompress = new GlobbyCompress(zipPath,
             [
