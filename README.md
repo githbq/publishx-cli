@@ -44,7 +44,7 @@
 - `-l` lib,移除types库时,连同库一起移除
 
 ### px install [--yarn?]
-- 对查找出来的所有项目执行 默认是 npm install 
+- 对查找出来的所有项目执行 默认是 npm install , 对多包工程内含有 `file:..` 版本依赖的工程也支持递装包
 
 ### px ignore [-n]
 - 在当前目录生成 .gitignore
