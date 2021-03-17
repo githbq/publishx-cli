@@ -10,13 +10,14 @@ export default {
   customRegistry: null,
   async start(data) {
     let cmdArr = []
-    const packageJSON = await packageHelper.get()
+    const packageJSON = await packageHelper.get(cwd)
     if (packageJSON.publishConfig) {
       consoleColor.green(`
     请确保已在相应的 registry 登录:
     npm adduser --registry=${packageJSON.publishConfig.registry}
     `)
       this.customRegistr = packageJSON.publishConfig.registry
+      console.log('packageJSON.publishConfig.registry', this.customRegistr)
     }
     const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
     if (packageJSON.scripts['lint'] && !packageJSON['pre-commit'] && !data.noVerify) {
@@ -95,11 +96,14 @@ export default {
    * 升级版本
    */
   async upgradeVersion() {
+    console.log('this.customRegistry', this.customRegistry)
+    return 
     const packageJson = await packageHelper.get()
     let currentVersion = packageJson.version
     let newVersion
     try {
-      const cmdStr = `npm view ${packageJson.name} version${this.customRegistry && ` --registry=${this.customRegistry}`}`
+      console.log('customRegistry', this.customRegistry)
+      const cmdStr = `npm view ${packageJson.name} version${this.customRegistry ? ` --registry=${this.customRegistry}` : ''}`
       consoleColor.start(cmdStr)
       const versionData = await exec(cmdStr, { preventDefault: true })
       console.log('versionData', versionData)
