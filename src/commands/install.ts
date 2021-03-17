@@ -1,7 +1,6 @@
 import { _, _Promise, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
 import show from './show'
-import * as Listr from 'listr'
-import { keyBy } from 'lodash'
+import * as Listr from 'listr' 
 
 const fileVersionToken = 'file:'
 /**
