@@ -7,6 +7,7 @@ export default {
   /**
    * 启动
    */
+  customRegistry: null,
   async start(data) {
     let cmdArr = []
     const packageJSON = await packageHelper.get()
@@ -15,6 +16,7 @@ export default {
     请确保已在相应的 registry 登录:
     npm adduser --registry=${packageJSON.publishConfig.registry}
     `)
+      this.customRegistr = packageJSON.publishConfig.registry
     }
     const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
     if (packageJSON.scripts['lint'] && !packageJSON['pre-commit'] && !data.noVerify) {
@@ -97,7 +99,7 @@ export default {
     let currentVersion = packageJson.version
     let newVersion
     try {
-      const versionData = await exec(`npm view ${packageJson.name} version`, { preventDefault: true })
+      const versionData = await exec(`npm view ${packageJson.name} version${this.customRegistry && ` --registry=${this.customRegistry}`}`, { preventDefault: true })
       currentVersion = versionData.stdout.replace(/\n/g, '')
     } catch (e) {
       //查询库在npm上的版本异常说明此库没有提交过
