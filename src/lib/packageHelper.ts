@@ -30,8 +30,8 @@ export const packageHelper = {
         return io.write(this.getPath(_cwd), jsonObj)
     },
     //获取version
-    getVersion(currentVersion?, _cwd?: string) {
-        let version = currentVersion || this.get(_cwd || rootPath).version
+    async getVersion(currentVersion?, _cwd?: string) {  
+        let version = currentVersion || (await this.get(_cwd || rootPath)).version 
         if (!semver.valid(version)) {
             throw new Error('Invalid version number found in package.json, please make sure it is valid')
         }

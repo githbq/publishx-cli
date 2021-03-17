@@ -104,7 +104,7 @@ export default {
       newVersion = currentVersion
     }
     consoleColor.green(`当前版本:${currentVersion}`)
-    newVersion = newVersion || semver.inc(packageHelper.getVersion(currentVersion), 'patch')
+    newVersion = newVersion || semver.inc(await packageHelper.getVersion(currentVersion), 'patch')
     consoleColor.green(`升级到新版本:${newVersion}`)
     packageJson.version = newVersion
     await packageHelper.write(packageJson)

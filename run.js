@@ -2,7 +2,7 @@
 
 require('ts-node/register')
 
-process.chdir('C:\\Users\\hubiqing\\Documents\\jd-workspace\\marketing')
+// process.chdir('C:\\Users\\hubiqing\\Documents\\jd-workspace\\marketing')
 
 require('./src')
      //tsconfig 帮助文档地址
