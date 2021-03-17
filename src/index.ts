@@ -1,12 +1,13 @@
 import * as requireDir from 'require-dir'
 import * as  yargs from 'yargs'
-import { exit, consoleColor } from './lib'
+import { exit, consoleColor, packageHelper} from './lib'
 import * as  momentHelper from 'moment-helper'
 
-export function start() {
-  const commands = requireDir('./commands', { recurse: true })
-
-  consoleColor.yellow(' 操作时间：' + momentHelper.get() + '\n')
+async function start(commandPath?) {
+  commandPath = commandPath || './commands'
+  const commands = requireDir(commandPath, { recurse: true })
+  consoleColor.yellow(`~~~~~~ version@${await packageHelper.getVersion()} & time：${momentHelper.get()} ~~~~~~~\n`)
+  let hit = false
   Object.keys(commands).forEach(key => {
     const result = (commands[key].index || commands[key]).default
     if (result && !(/^(common|index|_)/.test(key)) && result.start) {
@@ -19,9 +20,10 @@ export function start() {
         result.command[0] = `${key} ${result.command[0]}`
       }
       yargs.command.apply(null, result.command.slice(0, 3).concat(async (argv) => {
+        hit = true
         try {
           consoleColor.time(`${key} 总耗时`)
-          await result.start(argv)
+          await result.start.call(result, argv)
         } catch (e) {
           consoleColor.red(`发生错误${e.message}`)
           consoleColor.red(e.stack)
@@ -32,10 +34,18 @@ export function start() {
     }
   })
   let argv = yargs.version().argv
-  if (!argv._.length) {
+  if (!hit) {
+    consoleColor.red('未知命令\n', false)
+  }
+  if (!argv._.length || !hit) {
     yargs.showHelp()
   }
   return { argv, yargs }
 }
 
-start()
+export default (commandPath) => {
+  return () => {
+    return start(commandPath)
+  }
+}
+export { start }
