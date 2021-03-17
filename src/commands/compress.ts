@@ -7,8 +7,9 @@ export default {
     /**
      * 启动
      */
-    async start() { 
-        const zipPath = `./dist/${packageHelper.getProjectName()}.zip`
+    async start({ name }) {
+        const fileName = (name || packageHelper.getProjectName()).replace(/\.zip$/, '')
+        const zipPath = `./dist/${fileName}.zip`
         const globbyCompress = new GlobbyCompress(zipPath,
             [
                 '**/*',
@@ -26,12 +27,17 @@ export default {
             consoleColor.green('共' + (Math.floor(bytes / 1024) || 0) + 'KB')
         } catch (e) {
             console.error(e)
-        } 
+        }
     },
     command: [
         '对当前项目打包，打包文件放置在dist文件夹，文件名为:[工程名].zip',
         {
-
+            name: {
+                alias: 'n',
+                describe: '文件名',
+                string: true,
+                default: ''
+            },
         }
     ]
 }
