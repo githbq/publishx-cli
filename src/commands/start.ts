@@ -34,6 +34,7 @@ export default {
       cmdArr.push({
         key: 'auto update package version', value: async () => {
           //以cwd目录执行版本++
+          console.log(`customRegistry`, this.customRegistry)
           newVersion = await this.upgradeVersion()
         }
       })
@@ -97,7 +98,7 @@ export default {
    */
   async upgradeVersion() {
     console.log('this.customRegistry', this.customRegistry)
-    return 
+    return
     const packageJson = await packageHelper.get()
     let currentVersion = packageJson.version
     let newVersion
