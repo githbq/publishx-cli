@@ -2,7 +2,7 @@ import { _, packageHelper, exec, getCurrentBranchName, consoleColor, cwd, io } f
 import * as semver from 'semver'
 /**
  * 推送代码到远程服务器
- */
+ */ 
 export default {
   /**
    * 启动
@@ -16,8 +16,7 @@ export default {
     请确保已在相应的 registry 登录:
     npm adduser --registry=${packageJSON.publishConfig.registry}
     `)
-      this.customRegistr = packageJSON.publishConfig.registry
-      console.log('packageJSON.publishConfig.registry', this.customRegistr)
+      this.customRegistry = packageJSON.publishConfig.registry 
     }
     const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
     if (packageJSON.scripts['lint'] && !packageJSON['pre-commit'] && !data.noVerify) {
@@ -33,8 +32,7 @@ export default {
       //自动生成版本号
       cmdArr.push({
         key: 'auto update package version', value: async () => {
-          //以cwd目录执行版本++
-          console.log(`customRegistry`, this.customRegistry)
+          //以cwd目录执行版本++ 
           newVersion = await this.upgradeVersion()
         }
       })
@@ -96,18 +94,14 @@ export default {
   /**
    * 升级版本
    */
-  async upgradeVersion() {
-    console.log('this.customRegistry', this.customRegistry)
-    return
+  async upgradeVersion() {  
     const packageJson = await packageHelper.get()
     let currentVersion = packageJson.version
     let newVersion
-    try {
-      console.log('customRegistry', this.customRegistry)
+    try { 
       const cmdStr = `npm view ${packageJson.name} version${this.customRegistry ? ` --registry=${this.customRegistry}` : ''}`
       consoleColor.start(cmdStr)
       const versionData = await exec(cmdStr, { preventDefault: true })
-      console.log('versionData', versionData)
       currentVersion = versionData.stdout.replace(/\n/g, '')
     } catch (e) {
       //查询库在npm上的版本异常说明此库没有提交过
