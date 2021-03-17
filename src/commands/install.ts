@@ -1,6 +1,6 @@
 import { _, _Promise, exec, getCurrentBranchName, cwd, consoleColor, io, packageHelper } from '../lib'
 import show from './show'
-import * as Listr from 'listr' 
+import * as Listr from 'listr'
 
 const fileVersionToken = 'file:'
 /**
@@ -79,7 +79,7 @@ export default {
             tasks.push({
                 title: `安装 level:${level} 级工程 by ${this.tool}`,
                 task: () => {
-                    return new Listr([...levelPackageModels.map(n => this.makeTask(n.path))])
+                    return new Listr([...levelPackageModels.map(n => this.makeTask(n.path))], { concurrent: data.concurrent || 1 })
                 }
             })
         })
