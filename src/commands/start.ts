@@ -99,7 +99,9 @@ export default {
     let currentVersion = packageJson.version
     let newVersion
     try {
-      const versionData = await exec(`npm view ${packageJson.name} version${this.customRegistry && ` --registry=${this.customRegistry}`}`, { preventDefault: true })
+      const cmdStr = `npm view ${packageJson.name} version${this.customRegistry && ` --registry=${this.customRegistry}`}`
+      consoleColor.start(cmdStr)
+      const versionData = await exec(cmdStr, { preventDefault: true })
       console.log('versionData', versionData)
       currentVersion = versionData.stdout.replace(/\n/g, '')
     } catch (e) {
