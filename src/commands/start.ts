@@ -100,13 +100,14 @@ export default {
     let newVersion
     try {
       const versionData = await exec(`npm view ${packageJson.name} version${this.customRegistry && ` --registry=${this.customRegistry}`}`, { preventDefault: true })
+      console.log('versionData', versionData)
       currentVersion = versionData.stdout.replace(/\n/g, '')
     } catch (e) {
       //查询库在npm上的版本异常说明此库没有提交过
       newVersion = currentVersion
     }
     consoleColor.green(`当前版本:${currentVersion}`)
-    newVersion = newVersion || semver.inc(await packageHelper.getVersion(currentVersion), 'patch')
+    newVersion = newVersion || semver.inc(await packageHelper.getVersion(currentVersion, cwd), 'patch')
     consoleColor.green(`升级到新版本:${newVersion}`)
     packageJson.version = newVersion
     await packageHelper.write(packageJson)
