@@ -16,7 +16,8 @@
         "tsc": "npm run clear && tsc",
         "tsc:w": "npm run clear && tsc -w",
         "p": "npm run tsc && npm publish",
-        "lint": "tslint ./src/**/*.ts --fix"
+        "lint": "tslint ./src/**/*.ts --fix",
+        "postpublish":"npm i -g publishx-cli --registry=https://registry.npmjs.org"
     },
     "dependencies": {
         "axios": "^0.21.1",
