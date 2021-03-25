@@ -93,7 +93,7 @@ export default {
    * 升级版本
    */
   async upgradeVersion() {  
-    const packageJson = await packageHelper.get()
+    const packageJson = await packageHelper.get(cwd)
     let currentVersion = packageJson.version
     let newVersion
     try { 
