@@ -22,6 +22,7 @@ export default {
     } catch (e) {
     }
     //merge
+    // --allow-unrelated-histories 允许未历史关联分支
     const cmdStr = `git merge ${branch} --no-ff --no-commit`
     consoleColor.start(cmdStr)
 
