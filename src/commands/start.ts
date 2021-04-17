@@ -2,7 +2,7 @@ import { _, packageHelper, exec, getCurrentBranchName, consoleColor, cwd, io } f
 import * as semver from 'semver'
 /**
  * 推送代码到远程服务器
- */ 
+ */
 export default {
   /**
    * 启动
@@ -14,7 +14,7 @@ export default {
     if (packageJSON.publishConfig) {
       consoleColor.green(`请确保已在相应的 registry 登录:
     npm adduser --registry=${packageJSON.publishConfig.registry}`)
-      this.customRegistry = packageJSON.publishConfig.registry 
+      this.customRegistry = packageJSON.publishConfig.registry
     }
     const isTs = await io.exists(io.pathTool.join(cwd, 'tsconfig.json'))
     if (packageJSON.scripts['lint'] && !packageJSON['pre-commit'] && !data.noVerify) {
@@ -92,11 +92,11 @@ export default {
   /**
    * 升级版本
    */
-  async upgradeVersion() {  
+  async upgradeVersion() {
     const packageJson = await packageHelper.get(cwd)
     let currentVersion = packageJson.version
     let newVersion
-    try { 
+    try {
       const cmdStr = `npm view ${packageJson.name} version${this.customRegistry ? ` --registry=${this.customRegistry}` : ''}`
       consoleColor.start(cmdStr)
       const versionData = await exec(cmdStr, { preventDefault: true })
@@ -109,7 +109,7 @@ export default {
     newVersion = newVersion || semver.inc(await packageHelper.getVersion(currentVersion, cwd), 'patch')
     consoleColor.green(`升级到新版本:${newVersion}`)
     packageJson.version = newVersion
-    await packageHelper.write(packageJson)
+    await packageHelper.write(packageJson, cwd)
     return newVersion
   },
   command: [
