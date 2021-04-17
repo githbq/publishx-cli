@@ -9,12 +9,12 @@ export default {
    */
   async start({ branch }) {
     if (!branch) {
-      consoleColor.red('缺少 分支名 , 提示: px merge dev')
+      consoleColor.red('缺少分支名 , 提示: px merge dev')
     }
     const currentBranchName = await getCurrentBranchName()//当前项目分支名
-    consoleColor.yellow('提示:默认开启 --no-ff --no-commit merge时不自动commit  非快照式合并!')
+    consoleColor.yellow('提示:默认开启 --no-ff --no-commit merge 时不自动commit  非快照式合并!')
     //commit
-    consoleColor.green('提示: 在merge前会自动提交一次当前代码以防止出现意外')
+    consoleColor.green('提示: 在 merge 前会自动提交一次当前代码以防止出现意外')
     const commitCmdStr = `px commit beforeMerge`
     consoleColor.start(commitCmdStr)
     try {
