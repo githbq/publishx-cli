@@ -1,8 +1,7 @@
 
 import { _, exec, getCurrentBranchName, cwd, consoleColor, io } from '../lib'
 import show from './show'
-import * as Listr from 'listr'
-import { Observable } from 'rxjs'
+import * as Listr from 'listr' 
 /**
  * 配置或者查看yarn registry
  */
@@ -14,7 +13,7 @@ export default {
     // registry 任务
     const registryStr = `yarn config set registry https://registry.npm.taobao.org`
     const npmRegistryStr = `yarn config set registry https://registry.npmjs.org`
-    const jdRegistryStr = `yarn config set registry http://npm.cbpmgt.com`
+    const kRegistryStr = `yarn config set registry http://npm.corp.kuaishou.com`
     await this.showCurrentRegistry()
     if (data.taobao) {
       consoleColor.start(`${registryStr}`)
@@ -24,8 +23,8 @@ export default {
       await exec(npmRegistryStr)
     }
     else if (data.jd) {
-      consoleColor.start(`${jdRegistryStr}`)
-      await exec(jdRegistryStr)
+      consoleColor.start(`${kRegistryStr}`)
+      await exec(kRegistryStr)
     }
     if (data.taobao || data.npm || data.jd) {
       await this.showCurrentRegistry()
@@ -77,10 +76,10 @@ export default {
         boolean: true,
         describe: '将 yarn 默认 registry 设置为https://registry.npmjs.org'
       },
-      jd: {
-        alias: ['j'],
+      ks: {
+        alias: ['k'],
         boolean: true,
-        describe: '将 yarn 默认 registry 设置为 http://npm.cbpmgt.com'
+        describe: '将 yarn 默认 registry 设置为 http://npm.corp.kuaishou.com'
       } 
     },
 
