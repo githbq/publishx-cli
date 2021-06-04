@@ -71,7 +71,7 @@
     "author": "hubiqing",
     "repository": "https://github.com/githbq/publishx-cli.git",
     "license": "MIT",
-    "enginxConfig": {
+    "nginxConfig": {
         "serverRootPath": "/export/local/www/",
         "appName": "/Users/hubiqing/Documents/github-workspace/publishx-cli",
         "backendHost": "127.0.0.1"
