@@ -22,11 +22,11 @@ export default {
       consoleColor.start(`${npmRegistryStr}`)
       await exec(npmRegistryStr)
     }
-    else if (data.jd) {
+    else if (data.ks) {
       consoleColor.start(`${kRegistryStr}`)
       await exec(kRegistryStr)
     }
-    if (data.taobao || data.npm || data.jd) {
+    if (data.taobao || data.npm || data.ks) {
       await this.showCurrentRegistry()
     }
 
