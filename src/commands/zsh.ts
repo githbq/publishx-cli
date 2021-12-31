@@ -24,34 +24,32 @@ export default {
         desc: '设置默认终端环境为 zsh',
         cmdStr: `chsh -s /bin/zsh`
       },
-      // {
-      //   desc: `安装 oh-my-zsh`,
-      //   cmdStr: `sh -c "$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)" `
-      // },
-
+      {
+        desc: `安装 oh-my-zsh`,
+        cmdStr: `sh -c "$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)" `
+      },
       {
         desc: `设置 wksp 与 gwskp 别名`,
         async execute() {
-          const workspacePath = io.pathTool.resolve('~/Documents/workspace')
-          const gworkspacePath = io.pathTool.resolve('~/Documents/github-workspace')
-          const zshConfigPath = io.pathTool.resolve('~/.zshrc')
+
+          const workspacePath = io.home.resolve('~/Documents/workspace')
+          const gworkspacePath = io.home.resolve('~/Documents/github-workspace')
+          const zshConfigPath = io.home.resolve('~/.zshrc')
           // 检查 ~/Documents/workspace 与 ~/Documents/github-workspace 目录存在，不存在则创建目录
           await Promise.all([
             fse.ensureDir(workspacePath),
             fse.ensureDir(gworkspacePath),
             fse.ensureFile(zshConfigPath)
           ])
-          let zshConfig = await fse.readFile(zshConfigPath).toString()
-          if (zshConfig.indexOf('github-workspace') === -1) {
-            zshConfig += `
+          let zshConfig = await (await fse.readFile(zshConfigPath)).toString()
+          zshConfig += `
 # start-my alias
 alias wksp="cd ~/Documents/workspace"
 alias gwksp="cd ~/Documents/github-workspace"
 # end-my alias
             `
-          }
           await fse.outputFile(zshConfigPath, zshConfig)
-          const ensureZshConfigCmdStr = 'source ~/.zshrc'
+          const ensureZshConfigCmdStr = `source ${zshConfigPath}`
           consoleColor.start(ensureZshConfigCmdStr)
           await exec(ensureZshConfigCmdStr, { cwd })
           consoleColor.green('执行完毕', true)
@@ -70,7 +68,6 @@ alias gwksp="cd ~/Documents/github-workspace"
         } else if (data.execute) {
           await data.execute()
         }
-        consoleColor.green('执行完毕', true)
       } catch (e) {
         consoleColor.error(e)
       }

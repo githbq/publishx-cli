@@ -5,8 +5,10 @@ import { stringify } from './other'
 import * as _ from 'lodash'
 import * as globby from 'globby'
 import * as rimraf from 'rimraf'
+import * as home from 'home'
 export const io = {
   fs,
+  home,
   pathTool,
   ensureDir(dir) {
     return fs.ensureDir(dir)
