@@ -17,7 +17,7 @@ export default {
     // registry 任务
     const registryStr = `npm config set registry https://registry.npm.taobao.org`
     const npmRegistryStr = `npm config set registry https://registry.npmjs.org`
-    const kRegistryStr = `npm config set registry http://npm.corp.kuaishou.com`
+    const okRegistryStr = `npm config set registry https://registry-npm.okg.com`
     await this.showCurrentRegistry()
     if (data.taobao) {
       consoleColor.start(`${registryStr}`)
@@ -26,11 +26,11 @@ export default {
       consoleColor.start(`${npmRegistryStr}`)
       await exec(npmRegistryStr)
     }
-    else if (data.ks) {
-      consoleColor.start(`${kRegistryStr}`)
-      await exec(kRegistryStr)
+    else if (data.ok) {
+      consoleColor.start(`${okRegistryStr}`)
+      await exec(okRegistryStr)
     }
-    if (data.taobao || data.npm || data.ks) {
+    if (data.taobao || data.npm || data.ok) {
       await this.showCurrentRegistry()
     }
     // ------------------------install 任务------------------------
@@ -79,10 +79,10 @@ export default {
         boolean: true,
         describe: '将 npm 默认 registry 设置为https://registry.npmjs.org'
       },
-      ks: {
-        alias: ['k'],
+      ok: {
+        alias: ['o'],
         boolean: true,
-        describe: '将 npm 默认 registry 设置为 http://npm.corp.kuaishou.com'
+        describe: '将 npm 默认 registry 设置为 https://registry-npm.okg.com'
       }
     },
 
