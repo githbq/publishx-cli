@@ -28,13 +28,13 @@ export default {
             ` 
     {
 
-      "Print to console": {
+      "create demo snippets": {
           "scope": "javascript,typescript",
-          "prefix": "abc",
+          "prefix": "demo",
           "body": [ 
 ${content.split(/\r|\n/g).map(n => `"${n.replace(/"/g, '\\"')}"`).join(',\n')}
           ],
-          "description": "Log output to console"
+          "description": "demo snippets"
       }
   }
     `
