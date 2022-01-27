@@ -32,7 +32,7 @@ export default {
           "scope": "javascript,typescript",
           "prefix": "abc",
           "body": [ 
-${content.split(/\r|\n/g).map(n => `"${n}"`).join(',\n')}
+${content.split(/\r|\n/g).map(n => `"${n.replace(/"/g, '\\"')}"`).join(',\n')}
           ],
           "description": "Log output to console"
       }
