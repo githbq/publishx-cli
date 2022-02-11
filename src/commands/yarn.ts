@@ -13,7 +13,7 @@ export default {
     // registry 任务
     const registryStr = `yarn config set registry https://registry.npm.taobao.org`
     const npmRegistryStr = `yarn config set registry https://registry.npmjs.org`
-    const kRegistryStr = `yarn config set registry http://npm.corp.kuaishou.com`
+    const okRegistryStr = `yarn config set registry https://registry-npm.okg.com`
     await this.showCurrentRegistry()
     if (data.taobao) {
       consoleColor.start(`${registryStr}`)
@@ -23,8 +23,8 @@ export default {
       await exec(npmRegistryStr)
     }
     else if (data.ks) {
-      consoleColor.start(`${kRegistryStr}`)
-      await exec(kRegistryStr)
+      consoleColor.start(`${okRegistryStr}`)
+      await exec(okRegistryStr)
     }
     if (data.taobao || data.npm || data.ks) {
       await this.showCurrentRegistry()
@@ -76,10 +76,10 @@ export default {
         boolean: true,
         describe: '将 yarn 默认 registry 设置为https://registry.npmjs.org'
       },
-      ks: {
-        alias: ['k'],
+      ok: {
+        alias: ['o'],
         boolean: true,
-        describe: '将 yarn 默认 registry 设置为 http://npm.corp.kuaishou.com'
+        describe: '将 yarn 默认 registry 设置为 https://registry-npm.okg.com'
       } 
     },
 
