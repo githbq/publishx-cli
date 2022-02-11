@@ -72,7 +72,7 @@ export default {
         describe: '将 yarn 默认 registry 设置为https://registry.npm.taobao.org'
       },
       npm: {
-        alias: ['n'],
+        alias: ['n'], 
         boolean: true,
         describe: '将 yarn 默认 registry 设置为https://registry.npmjs.org'
       },
