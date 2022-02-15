@@ -22,7 +22,12 @@ export default {
         ] 
         consoleColor.yellow(`
 git config --global http.proxy 127.0.0.1:7890
-git config --global https.proxy 127.0.0.1:7890
+git config --global https.proxy 127.0.0.1:7890 
+
+查看代理
+git config --global https.proxy
+
+npm config delete proxy
         `)
         for (let cmdStr of cmdStrs) {
             try {
