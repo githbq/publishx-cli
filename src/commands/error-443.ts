@@ -14,10 +14,16 @@ export default {
      */
     async start(data) {
         const cmdStrs = [
+            'git config --global --unset http.proxy',
+            'git config --global --unset https.proxy',
             'git config --global --add remote.origin.proxy ""',
             'git config --global --unset-all remote.origin.proxy',
             'git config --global http.sslVerify false'
         ] 
+        consoleColor.yellow(`
+git config --global http.proxy 127.0.0.1:7890
+git config --global https.proxy 127.0.0.1:7890
+        `)
         for (let cmdStr of cmdStrs) {
             try {
                 consoleColor.start(cmdStr)
