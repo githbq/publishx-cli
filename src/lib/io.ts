@@ -10,6 +10,9 @@ export const io = {
   fs,
   home,
   pathTool,
+  empty(dir) {
+    return fs.emptyDirSync(dir)
+  },
   ensureDir(dir) {
     return fs.ensureDir(dir)
   },
