@@ -8,6 +8,7 @@
 #临时文件
 ##npm库安装目录
 node_modules
+node_modules*
 ##项目临时文件存放目录
 temp/
 dist/
