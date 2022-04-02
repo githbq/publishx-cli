@@ -22,7 +22,7 @@ export default {
       consoleColor.start(`${npmRegistryStr}`)
       await exec(npmRegistryStr)
     }
-    else if (data.ks) {
+    else if (data.ok) {
       consoleColor.start(`${okRegistryStr}`)
       await exec(okRegistryStr)
     }
