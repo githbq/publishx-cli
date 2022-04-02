@@ -18,8 +18,9 @@ export default {
             'git config --global --unset https.proxy',
             'git config --global --add remote.origin.proxy ""',
             'git config --global --unset-all remote.origin.proxy',
-            'git config --global http.sslVerify false'
-        ] 
+            'git config --global http.sslVerify false',
+            `git config --global --add remote.origin.proxy "127.0.0.1:7890"`
+        ]
         consoleColor.yellow(`
 git config --global http.proxy 127.0.0.1:7890
 git config --global https.proxy 127.0.0.1:7890 
@@ -28,6 +29,9 @@ git config --global https.proxy 127.0.0.1:7890
 git config --global https.proxy
 
 npm config delete proxy
+
+开代理情况下配置:
+git config --global --add remote.origin.proxy "127.0.0.1:7890"
         `)
         for (let cmdStr of cmdStrs) {
             try {
@@ -36,9 +40,9 @@ npm config delete proxy
             } catch (e) {
                 consoleColor.error(e)
             }
-        } 
+        }
     },
-    command: [ 
+    command: [
         `fatal: unable to access 'https://github.com/xxxxx.git/': Failed to connect to github.com port 443: Operation timed out`,
         {
 
