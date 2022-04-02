@@ -2,7 +2,7 @@
 
 import { io, cwd } from '../lib'
 /**
- * 配置sass
+ * 配置vscode snippets
  */
 export default {
     /**
