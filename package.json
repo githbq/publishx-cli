@@ -19,6 +19,7 @@
         "lint": "tslint ./src/**/*.ts --fix"
     },
     "dependencies": {
+        "7zip-min": "^1.4.1",
         "axios": "^0.21.1",
         "bluebird": "^3.5.4",
         "cli-color": "^1.4.0",
