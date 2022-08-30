@@ -11,7 +11,7 @@ export default {
         if (!port) {
             return
         }
-        consoleColor.start(`开发杀网络端口 ${port}`)
+        consoleColor.start(`开始杀网络端口 ${port}`)
         const pids = await kill(port)
         consoleColor.green(`杀掉了网络端口 ${port} 对应 pids = ${JSON.stringify(pids)}`)
     },
