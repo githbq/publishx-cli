@@ -14,13 +14,13 @@ export default {
     const currentBranchName = await getCurrentBranchName()//当前项目分支名
     consoleColor.yellow('提示:默认开启 --no-ff --no-commit merge 时不自动commit  非快照式合并!')
     //commit
-    consoleColor.green('提示: 在 merge 前会自动提交一次当前代码以防止出现意外')
-    const commitCmdStr = `px commit beforeMerge`
-    consoleColor.start(commitCmdStr)
-    try {
-      await exec(commitCmdStr)
-    } catch (e) {
-    }
+    // consoleColor.green('提示: 在 merge 前会自动提交一次当前代码以防止出现意外')
+    // const commitCmdStr = `px commit beforeMerge`
+    // consoleColor.start(commitCmdStr)
+    // try {
+    //   await exec(commitCmdStr)
+    // } catch (e) {
+    // }
     //merge
     // --allow-unrelated-histories 允许未历史关联分支
     const cmdStr = `git merge ${branch} --no-ff --no-commit`
