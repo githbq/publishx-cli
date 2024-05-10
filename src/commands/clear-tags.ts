@@ -22,10 +22,11 @@ export default {
               count++
               const cmdDeleteTagStr = `git tag --delete ${tag} && git push origin :${tag}`
               consoleColor.start(cmdDeleteTagStr) 
-              await exec(cmdDeleteTagStr)
-              consoleColor.green(`剩余${tags.length - count}项`)
+              await exec(cmdDeleteTagStr) 
             } catch (e) {
               consoleColor.error(e)
+            } finally {
+              consoleColor.green(`剩余${tags.length - count}项`)
             }
           }
 
