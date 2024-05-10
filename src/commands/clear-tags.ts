@@ -21,7 +21,7 @@ export default {
           let tasks = []
           for (let tag of tags) {
             tasks.push({
-              title: `[count]: delete tag ${tag}`,
+              title: `[${count}]: delete tag ${tag}`,
               task: async () => {
                 try {
                   count++
