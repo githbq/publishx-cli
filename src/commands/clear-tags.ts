@@ -14,7 +14,7 @@ export default {
       try {
         const result = await exec(cmdStr)
         const tags = result.stdout.split('\n').filter(n => !!n)
-        const yes = await confirm('是否要删除掉所有分支?')
+        const yes = await confirm('是否要删除掉所有tags?')
         if (yes) {
           let count = 0
           for (let tag of tags) {
